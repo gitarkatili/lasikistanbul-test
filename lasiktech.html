@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EyeSTAR LASIK Institute - Advanced Laser Eye Surgery</title>
+    <!-- Page-specific title -->
+    <title>The LASIK Technology - EyeSTAR LASIK Institute</title>
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -104,7 +105,7 @@
             background-position: center;
         }
         
-        /* NEW: Video Modal Styles */
+        /* Video Modal Styles */
         #video-modal-overlay {
             position: fixed;
             top: 0;
@@ -157,7 +158,7 @@
 </head>
 <body class="bg-primary text-secondary">
 
-    <!-- =========== HEADER =========== -->
+    <!-- =========== HEADER (COPIED FROM INDEX.HTML) =========== -->
     <header class="fixed top-0 left-0 w-full z-50">
         <!-- 1. Top Bar -->
         <!-- UPDATED: bg-white, text-secondary, shadow-sm -->
@@ -343,356 +344,102 @@
         </nav>
     </header>
 
-    <!-- =========== MAIN CONTENT =========== -->
+    <!-- =========== NEW MAIN CONTENT =========== -->
     <main>
-        <!-- 4. Hero Section with Contact Form -->
-        <section id="hero" class="relative min-h-screen flex items-center justify-center bg-gray-800 -mt-30">
-            <!-- Background Image -->
-            <div class="absolute inset-0">
-                <img src="lasik-bg.jpg" 
-                     alt="Modern eye clinic" 
-                     class="w-full h-full object-cover">
-                <!-- Overlay -->
-                <div class="absolute inset-0 bg-secondary/60"></div>
+        <!-- 1. Page Header -->
+        <section class="py-16 sm:py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-4xl sm:text-5xl font-extrabold text-secondary tracking-tight">
+                    Our Advanced LASIK Technology
+                </h1>
+                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+                    At EyeSTAR, we invest in the world's most advanced, precise, and safest technology to ensure you get the best possible results.
+                </p>
             </div>
+        </section>
 
-            <!-- Content -->
-            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <!-- Title & Slogan -->
-                    <div class="text-white text-center lg:text-left">
-                        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight" style="text-shadow: gray 0 5px 25px;">
-                            See the World Clearly
-                        </h1>
-                        <p class="mt-6 text-xl sm:text-2xl text-white max-w-2xl mx-auto lg:mx-0" style="text-shadow: gray 0 5px 25px;">
-                            Experience life-changing vision correction at EyeSTAR LASIK Institute. Your journey to perfect sight starts here.
-                        </p>
+        <!-- 2. Technology Content Section -->
+        <section class="py-16 sm:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 sm:space-y-24">
+
+                <!-- Technology Block 1: WaveLight EX500 -->
+                <div class="fade-in grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
+                    <div class="rounded-lg shadow-xl overflow-hidden">
+                        <img src="866111_613089.jpeg" alt="WaveLight EX500 Excimer Laser machine" class="w-full h-full object-cover">
                     </div>
-
-                    <!-- Contact Form -->
-                    <div class="bg-white p-6 sm:p-8 rounded-xl shadow-2xl">
-                        <h2 class="text-2xl sm:text-3xl font-bold text-center text-secondary mb-6">
-                            Start Your Free Consultation
-                        </h2>
-                        <!-- Web3Forms Form -->
-                        <!-- IMPORTANT: Replace "YOUR_ACCESS_KEY_HERE" with your actual Web3Forms Access Key -->
-                        <form action="https://api.web3forms.com/submit" method="POST" id="hero-form">
-                            <input type="hidden" name="access_key" value="065fee61-3157-4a55-af33-4a1877dfd2b4">
-                            <input type="hidden" name="subject" value="New Consultation Request from EyeSTAR Website">
-                            <input type="hidden" name="redirect" value="https://web3forms.com/success"> <!-- Optional: A success page -->
-
-                            <div class="grid sm:grid-cols-2 gap-4">
-                                <!-- Name -->
-                                <div>
-                                    <label for="hero-name" class="block text-sm font-medium text-gray-700">Name</label>
-                                    <input type="text" name="name" id="hero-name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-accent focus:border-accent">
-                                </div>
-                                <!-- Surname -->
-                                <div>
-                                    <label for="hero-surname" class="block text-sm font-medium text-gray-700">Surname</label>
-                                    <input type="text" name="surname" id="hero-surname" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-accent focus:border-accent">
-                                </div>
-                                <!-- E-mail -->
-                                <div class="sm:col-span-2">
-                                    <label for="hero-email" class="block text-sm font-medium text-gray-700">E-mail</label>
-                                    <input type="email" name="email" id="hero-email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-accent focus:border-accent">
-                                </div>
-                                <!-- Telephone -->
-                                <div class="sm:col-span-2">
-                                    <label for="hero-phone" class="block text-sm font-medium text-gray-700">Telephone Number</label>
-                                    <input type="tel" name="phone" id="hero-phone" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-accent focus:border-accent">
-                                </div>
-                                <!-- Message -->
-                                <div class="sm:col-span-2">
-                                    <label for="hero-message" class="block text-sm font-medium text-gray-700">Message</label>
-                                    <textarea name="message" id="hero-message" rows="4" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-accent focus:border-accent"></textarea>
-                                </div>
-                                <!-- Vision Problem Checkboxes -->
-                                <div class="sm:col-span-2">
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">What is your vision problem? (Check all that apply)</label>
-                                    <div class="grid grid-cols-2 gap-x-4 gap-y-2">
-                                        <label for="chk-myopia" class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
-                                            <input type="checkbox" name="vision_problem[]" value="Myopia" id="chk-myopia" class="form-checkbox"> Myopia (Nearsightedness)
-                                        </label>
-                                        <label for="chk-hypermetropia" class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
-                                            <input type="checkbox" name="vision_problem[]" value="Hypermetropia" id="chk-hypermetropia" class="form-checkbox"> Hyperopia (Farsightedness)
-                                        </label>
-                                        <label for="chk-astigmatism" class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
-                                            <input type="checkbox" name="vision_problem[]" value="Astigmatism" id="chk-astigmatism" class="form-checkbox"> Astigmatism
-                                        </label>
-                                        <label for="chk-cataracts" class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
-                                            <input type="checkbox" name="vision_problem[]" value="Cataracts" id="chk-cataracts" class="form-checkbox"> Cataracts
-                                        </label>
-                                        <label for="chk-presbyopia" class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
-                                            <input type="checkbox" name="vision_problem[]" value="Presbyopia" id="chk-presbyopia" class="form-checkbox"> Presbyopia (Aging Eyes)
-                                        </label>
-                                        <label for="chk-other" class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
-                                            <input type="checkbox" name="vision_problem[]" value="Other" id="chk-other" class="form-checkbox"> Other / Not Sure
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Submit Button -->
-                            <div class="mt-6">
-                                <!-- UPDATED: bg-accent -->
-                                <button type="submit" class="w-full py-3 px-6 border border-transparent rounded-lg shadow-sm text-base font-medium text-white bg-orange-400 hover:bg-accent-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent transition-all transform hover:scale-105">
-                                    Send My Request
-                                </button>
-                            </div>
-                            <p class="text-xs text-gray-500 text-center mt-4">We'll get back to you within 24 hours.</p>
-                        </form>
+                    <div class="prose prose-lg max-w-none text-gray-600">
+                        <h2 class="text-3xl font-bold text-secondary">WaveLight EX500 Excimer Laser</h2>
+                        <p>At EyeSTAR LASIK Institute, we use the WaveLight EX500 Excimer Laser, one of the most advanced and reliable systems in the world of refractive surgery. Built on the trusted WaveLight platform, this laser operates at an incredible 500 Hz, meaning it checks and rechecks the position of your eye 500 times per second during treatment. This level of precision ensures that each laser pulse is perfectly placed—even if your eye moves slightly.</p>
+                        <p>What does that mean for you? <strong>Faster, safer procedures with pinpoint accuracy.</strong> The average treatment time is just 1.4 seconds per diopter, which means less time under the laser and a smoother experience overall. The system’s swivel bed design also minimizes the time between flap creation and laser treatment, which helps maintain corneal hydration and improves outcomes.</p>
                     </div>
                 </div>
+
+                <!-- Technology Block 2: FEMTO LDV Z6 -->
+                <div class="fade-in grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
+                    <div class="rounded-lg shadow-xl overflow-hidden md:order-2">
+                        <img src="437710_147426.jpeg" alt="FEMTO LDV Z6 femtosecond laser machine" class="w-full h-full object-cover">
+                    </div>
+                    <div class="prose prose-lg max-w-none text-gray-600 md:order-1">
+                        <h2 class="text-3xl font-bold text-secondary">FEMTO LDV Z6 Femtosecond Laser</h2>
+                        <p>We use the FEMTO LDV Z6 femtosecond laser—an exceptional innovation in laser eye surgery that allows us to perform LASIK with even greater precision, safety, and comfort. Unlike older femtosecond lasers, the Z6 uses ultra-fast, low-energy light pulses to create the corneal flap—the crucial first step of LASIK.</p>
+                        <p>What sets the FEMTO LDV Z6 apart is its gentle yet incredibly fast approach. It delivers pulses at a rate of 5 million per second, using less than 10% of the energy of conventional femtosecond lasers. This results in a safer, more comfortable experience and supports faster visual recovery.</p>
+                        <ul class="text-base">
+                            <li><strong>Enhanced Safety:</strong> Lower energy means less discomfort, reduced inflammation, and decreased light sensitivity after surgery.</li>
+                            <li><strong>Greater Precision:</strong> The Z6 allows our surgeons to create highly accurate corneal flaps—especially important for patients with high prescriptions or thinner corneas.</li>
+                            <li><strong>Faster Visual Recovery:</strong> Thanks to its overlapping bubble pattern, the treatment surface is exceptionally smooth—leading to quicker healing and clearer vision in a shorter time.</li>
+                            <li><strong>Lower Risk of Dry Eye:</strong> The Z6’s gentle energy delivery reduces disturbance to the eye's surface, lowering the chance of post-surgery dry eye symptoms.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Technology Block 3: Eyetracker -->
+                <div class="fade-in grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
+                    <div class="rounded-lg shadow-xl overflow-hidden">
+                        <img src="509952_470291.png" alt="Close-up of WaveLight EX500 logo" class="w-full h-full object-cover">
+                    </div>
+                    <div class="prose prose-lg max-w-none text-gray-600">
+                        <h2 class="text-3xl font-bold text-secondary">The WaveLight Allegretto Wave Eyetracker</h2>
+                        <p>The EyeSTAR eyetracker is an integral part of EyeSTAR LASIK treatment. It works with the laser for an ultra-precise treatment, ensuring that each laser pulse is placed exactly where it should be.</p>
+                        <p>EyeSTAR's eyetracker has a sampling rate faster than 500Hz and it follows eye movements 500 times per second. This is critical because the eye can twitch involuntarily. If the eyetracker is too slow, the laser may not receive the correct positioning information.</p>
+                        <p>What is also extremely important is the ability of the laser to react to that information. The EyeSTAR laser and eyetracker both work at 500Hz, which means that as the eyetracker is following the eye 500 times per second, the laser is working at the same speed, precisely ablating the necessary areas of the cornea based on real-time data.</p>
+                    </div>
+                </div>
+
+                <!-- Technology Block 4: Topolyzer -->
+                <div class="fade-in grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
+                    <div class="rounded-lg shadow-xl overflow-hidden md:order-2">
+                        <img src="872812_512184.png" alt="WaveLight Allegro Topolyzer diagnostic machine" class="w-full h-full object-cover">
+                    </div>
+                    <div class="prose prose-lg max-w-none text-gray-600 md:order-1">
+                        <h2 class="text-3xl font-bold text-secondary">The WaveLight Allegro Topolyzer</h2>
+                        <p>The basis for successful eye laser treatment is an accurate diagnosis. The EyeSTAR ALLEGRO Topolyzer is an ideal device to support the decision-making process for customized laser vision correction.</p>
+                        <p>With an extraordinarily high resolution of the cornea resulting from <strong>22,000 measuring points</strong>, the ALLEGRO Topolyzer is an accurate tool for preparing refractive surgery. It produces a refractive map to display aberrations and is fitted with an interactive elevation map, allowing for individual selection of reference body, radius and sphericity.</p>
+                        <h3 class="text-2xl font-semibold text-secondary">The WaveLight Allegro T-CAT Treatment</h3>
+                        <p>The T-CAT software has been specifically designed to measure and generate high-resolution treatment data for eyes with severe irregularities. It was developed for the most difficult cases, in which standard wavefront measurement would prove ineffective. All necessary parameters are transferred from the Topolyzer to the laser, which then calculates the appropriate correction pattern.</p>
+                    </div>
+                </div>
+
+                <!-- Technology Block 5: Analyzer -->
+                <div class="fade-in grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
+                    <div class="rounded-lg shadow-xl overflow-hidden">
+                        <img src="485088_281185.png" alt="WaveLight Allegro Analyzer diagnostic machine" class="w-full h-full object-cover">
+                    </div>
+                    <div class="prose prose-lg max-w-none text-gray-600">
+                        <h2 class="text-3xl font-bold text-secondary">The WaveLight Allegro Analyzer</h2>
+                        <p>The EyeSTAR ALLEGRO Analyzer is an ideal diagnostic device to support the decision-making process for customized laser vision correction. It greatly enhances the range of possible treatments, from the standard wavefront-optimized procedure to the highly sophisticated wavefront-guided treatment (A-CAT).</p>
+                        <p>ALLEGRO A-CAT treatments are intended for use on patients with a high incidence of high-order aberrations in their optical system. Any required correction to the optical path of the eye is then enabled via the A-CAT module on the cornea.</p>
+                        <h3 class="text-2xl font-semibold text-secondary">Tscherning Principle</h3>
+                        <p>Working in the visible spectrum, the ALLEGRO Analyzer makes wavefront measurements by utilizing the Tscherning operating principle. An image of measurement spots is projected onto the retina, allowing the physician to constantly verify that the image has been taken properly and that all measurement spots are valid. This minimizes the risk of false treatment data from local obstructions.</p>
+                    </div>
+                </div>
+
             </div>
         </section>
         
-        <!-- 5. Steps to LASIK Section -->
-        <section id="steps" class="py-16 sm:py-24 bg-gray-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center">
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-secondary tracking-tight">
-                        Your Journey to Clear Vision
-                    </h2>
-                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-                        We've simplified the LASIK process into three easy steps.
-                    </p>
-                </div>
-                
-                <div class="mt-16 grid md:grid-cols-3 gap-8">
-                    <!-- Step 1 -->
-                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
-                        <img class="w-full h-48 object-cover" src="s1.png" alt="Eye examination">
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-2xl font-bold text-secondary">Step 1 - The Exam</h3>
-                            <p class="mt-3 text-base text-gray-600 flex-grow">
-                                It starts with a comprehensive, 100% free consultation to determine if you are a perfect candidate for LASIK.
-                            </p>
-                            <!-- UPDATED: bg-accent -->
-                            <a href="#" class="inline-block mt-6 px-6 py-3 rounded-lg text-base font-medium text-white bg-orange-400 hover:bg-accent-hover shadow-md transition-all text-center transform hover:scale-105">
-                                Book Your Free Exam
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- Step 2 -->
-                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
-                        <img class="w-full h-48 object-cover" src="s2.png" alt="LASIK procedure">
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-2xl font-bold text-secondary">Step 2 - The LASIK</h3>
-                            <p class="mt-3 text-base text-gray-600 flex-grow">
-                                Your custom, all-laser procedure is performed by our expert surgeons using state-of-the-art technology. It's quick, comfortable, and precise.
-                            </p>
-                            <!-- UPDATED: bg-accent -->
-                            <a href="#" class="inline-block mt-6 px-6 py-3 rounded-lg text-base font-medium text-white bg-orange-400 hover:bg-accent-hover shadow-md transition-all text-center transform hover:scale-105">
-                                Learn About Technology
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- Step 3 -->
-                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
-                        <img class="w-full h-48 object-cover" src="s3.png" alt="Post-op checkup">
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-2xl font-bold text-secondary">Step 3 - The Check</h3>
-                            <p class="mt-3 text-base text-gray-600 flex-grow">
-                                See the world with new eyes! We'll see you the next day for a quick check-up to celebrate your new vision.
-                            </p>
-                            <!-- UPDATED: bg-accent -->
-                            <a href="#" class="inline-block mt-6 px-6 py-3 rounded-lg text-base font-medium text-white bg-orange-400 hover:bg-accent-hover shadow-md transition-all text-center transform hover:scale-105">
-                                See LASIK Results
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 6. What Patients Say Section -->
-        <section id="patients" class="py-16 sm:py-24 bg-primary">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center">
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-secondary tracking-tight">
-                        What Our Patients Say
-                    </h2>
-                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-                        Hear directly from patients who changed their lives with EyeSTAR.
-                    </p>
-                </div>
-                
-                <div class="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- NEW: Video Popup Structure -->
-                    
-                    <!-- Patient 1 -->
-                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden">
-                        <button class="video-thumbnail-button w-full relative h-0 pb-[56.25%]" data-video-id="W6XFU13Bwug">
-                            <img src="https://img.youtube.com/vi/W6XFU13Bwug/hqdefault.jpg" alt="Video thumbnail" class="absolute top-0 left-0 w-full h-full object-cover rounded-t-xl">
-                            <div class="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 hover:opacity-100 transition-opacity rounded-t-xl">
-                                <svg class="h-16 w-16 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
-                            </div>
-                        </button>
-                        <div class="p-6">
-                            <h4 class="text-xl font-bold text-accent">"Life-changing is an understatement!"</h4>
-                            <p class="mt-2 text-base text-gray-700">
-                                "Everything was wonderful and now it is the next day and I can see!"
-                            </p>
-                            <p class="mt-4 text-sm font-semibold text-secondary">
-                                — Nick from USA
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Patient 2 -->
-                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden">
-                        <button class="video-thumbnail-button w-full relative h-0 pb-[56.25%]" data-video-id="Yq66j76J-L0"> <!-- Example ID -->
-                            <img src="https://img.youtube.com/vi/Yq66j76J-L0/hqdefault.jpg" alt="Video thumbnail" class="absolute top-0 left-0 w-full h-full object-cover rounded-t-xl">
-                            <div class="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 hover:opacity-100 transition-opacity rounded-t-xl">
-                                <svg class="h-16 w-16 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
-                            </div>
-                        </button>
-                        <div class="p-6">
-                            <h4 class="text-xl font-bold text-accent">"The team was incredibly professional."</h4>
-                            <p class="mt-2 text-base text-gray-700">
-                                "I'll be forever grateful that EyeSTAR helped me get rid of glasses that I have been wearing for 15 years."
-                            </p>
-                            <p class="mt-4 text-sm font-semibold text-secondary">
-                                — Francis from Canada
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Patient 3 -->
-                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden">
-                        <button class="video-thumbnail-button w-full relative h-0 pb-[56.25%]" data-video-id="5E9hqW_doSs"> <!-- Example ID -->
-                            <img src="https://img.youtube.com/vi/5E9hqW_doSs/hqdefault.jpg" alt="Video thumbnail" class="absolute top-0 left-0 w-full h-full object-cover rounded-t-xl">
-                            <div class="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 hover:opacity-100 transition-opacity rounded-t-xl">
-                                <svg class="h-16 w-16 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
-                            </div>
-                        </button>
-                        <div class="p-6">
-                            <h4 class="text-xl font-bold text-accent">"My only regret? Not doing it sooner."</h4>
-                            <p class="mt-2 text-base text-gray-700">
-                                "We are very pleased with the results."
-                            </p>
-                            <p class="mt-4 text-sm font-semibold text-secondary">
-                                — Holger and Claudia from Germany
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Patient 4 -->
-                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden">
-                        <button class="video-thumbnail-button w-full relative h-0 pb-[56.25%]" data-video-id="8-SG8vdcPWA"> <!-- Example ID -->
-                            <img src="https://img.youtube.com/vi/8-SG8vdcPWA/hqdefault.jpg" alt="Video thumbnail" class="absolute top-0 left-0 w-full h-full object-cover rounded-t-xl">
-                            <div class="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 hover:opacity-100 transition-opacity rounded-t-xl">
-                                <svg class="h-16 w-16 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
-                            </div>
-                        </button>
-                        <div class="p-6">
-                            <h4 class="text-xl font-bold text-accent">"Astigmatism is completely gone."</h4>
-                            <p class="mt-2 text-base text-gray-700">
-                                "EyeSTAR, you're amazing."
-                            </p>
-                            <p class="mt-4 text-sm font-semibold text-secondary">
-                                — Sheba from Uganda
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Patient 5 -->
-                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden">
-                        <button class="video-thumbnail-button w-full relative h-0 pb-[56.25%]" data-video-id="bCrnK_hA-gI"> <!-- Example ID -->
-                            <img src="https://img.youtube.com/vi/bCrnK_hA-gI/hqdefault.jpg" alt="Video thumbnail" class="absolute top-0 left-0 w-full h-full object-cover rounded-t-xl">
-                            <div class="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 hover:opacity-100 transition-opacity rounded-t-xl">
-                                <svg class="h-16 w-16 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
-                            </div>
-                        </button>
-                        <div class="p-6">
-                            <h4 class="text-xl font-bold text-accent">"We traveled for the procedure."</h4>
-                            <p class="mt-2 text-base text-gray-700">
-                                "We are going to tell all of our friends...and that's how we got here, through a friend's recommendation."
-                            </p>
-                            <p class="mt-4 text-sm font-semibold text-secondary">
-                                — Mario and Viktor (Twins) from Bulgaria
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- 7. FAQ Section -->
-        <section id="faq" class="py-16 sm:py-24 bg-gray-50">
-            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center">
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-secondary tracking-tight">
-                        Your Questions, Answered
-                    </h2>
-                    <p class="mt-4 text-lg text-gray-600">
-                        Find answers to common questions about LASIK.
-                    </p>
-                </div>
-                
-                <div class="mt-12 space-y-4" id="faq-container">
-                    <!-- FAQ Item 1 -->
-                    <div class="fade-in bg-white rounded-lg shadow-md">
-                        <button class="faq-question w-full flex justify-between items-center text-left p-5">
-                            <span class="text-lg font-semibold text-secondary">Is the LASIK procedure painful?</span>
-                            <svg class="faq-arrow h-6 w-6 text-accent transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </button>
-                        <div class="faq-answer max-h-0 overflow-hidden px-5">
-                            <p class="py-5 text-base text-gray-600 border-t border-gray-200">
-                                No, the procedure is not painful. We use powerful anesthetic eye drops to completely numb your eye before and during the procedure. You may feel a slight pressure sensation, but most patients report no pain at all.
-                            </p>
-                        </div>
-                    </div>
-                    <!-- FAQ Item 2 -->
-                    <div class="fade-in bg-white rounded-lg shadow-md">
-                        <button class="faq-question w-full flex justify-between items-center text-left p-5">
-                            <span class="text-lg font-semibold text-secondary">How long does the recovery take?</span>
-                            <svg class="faq-arrow h-6 w-6 text-accent transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </button>
-                        <div class="faq-answer max-h-0 overflow-hidden px-5">
-                            <p class="py-5 text-base text-gray-600 border-t border-gray-200">
-                                Recovery is remarkably fast. Most patients notice significantly improved vision within hours and are able to return to work and most normal activities the very next day. We'll provide a detailed post-operative care plan.
-                            </p>
-                        </div>
-                    </div>
-                    <!-- FAQ Item 3 -->
-                    <div class="fade-in bg-white rounded-lg shadow-md">
-                        <button class="faq-question w-full flex justify-between items-center text-left p-5">
-                            <span class="text-lg font-semibold text-secondary">Am I a good candidate for LASIK?</span>
-                            <svg class="faq-arrow h-6 w-6 text-accent transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </button>
-                        <div class="faq-answer max-h-0 overflow-hidden px-5">
-                            <p class="py-5 text-base text-gray-600 border-t border-gray-200">
-                                Ideal candidates are over 18, have had a stable prescription for at least one year, and have good overall eye health. Conditions like myopia, hypermetropia, and astigmatism can be treated. The best way to know for sure is to book your free, no-obligation consultation.
-                            </p>
-                        </div>
-                    </div>
-                    <!-- FAQ Item 4 -->
-                    <div class="fade-in bg-white rounded-lg shadow-md">
-                        <button class="faq-question w-full flex justify-between items-center text-left p-5">
-                            <span class="text-lg font-semibold text-secondary">What if I blink during the procedure?</span>
-                            <svg class="faq-arrow h-6 w-6 text-accent transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </button>
-                        <div class="faq-answer max-h-0 overflow-hidden px-5">
-                            <p class="py-5 text-base text-gray-600 border-t border-gray-200">
-                                You don't need to worry about blinking. We use a small, gentle device to hold your eye open. Our advanced laser systems also have eye-tracking technology that follows your eye's microscopic movements, ensuring the laser is perfectly placed at all times.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- 8. Contact Form & Map Section -->
-        <section id="contact" class="py-16 sm:py-24 bg-primary">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center">
+        <!-- Contact Form Section (from index.html) -->
+        <section id="contact" class="py-16 sm:py-24 bg-gray-50">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
                     <h2 class="text-3xl sm:text-4xl font-extrabold text-secondary tracking-tight">
                         Ready to Take the Next Step?
                     </h2>
@@ -701,100 +448,57 @@
                     </p>
                 </div>
                 
-                <div class="mt-16 grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-                    <!-- Contact Form (Repeated) -->
-                    <div class="fade-in bg-white p-6 sm:p-8 rounded-xl shadow-xl border border-gray-100">
-                        <h2 class="text-2xl sm:text-3xl font-bold text-center text-secondary mb-6">
-                            Start Your Free Consultation
-                        </h2>
-                        <!-- Web3Forms Form -->
-                        <form action="https://api.web3forms.com/submit" method="POST" id="footer-form">
-                            <input type="hidden" name="access_key" value="065fee61-3157-4a55-af33-4a1877dfd2b4">
-                            <input type="hidden" name="subject" value="New Contact Form Submission from EyeSTAR Footer">
-                            <input type="hidden" name="redirect" value="https://web3forms.com/success">
+                <div class="fade-in bg-white p-6 sm:p-8 rounded-xl shadow-xl border border-gray-100">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-center text-secondary mb-6">
+                        Start Your Free Consultation
+                    </h2>
+                    <!-- Web3Forms Form -->
+                    <form action="https://api.web3forms.com/submit" method="POST" id="footer-form">
+                        <input type="hidden" name="access_key" value="065fee61-3157-4a55-af33-4a1877dfd2b4">
+                        <input type="hidden" name="subject" value="New Contact Form Submission from EyeSTAR Tech Page">
+                        <input type="hidden" name="redirect" value="https://web3forms.com/success">
 
-                            <div class="grid sm:grid-cols-2 gap-4">
-                                <!-- Name -->
-                                <div>
-                                    <label for="footer-name" class="block text-sm font-medium text-gray-700">Name</label>
-                                    <input type="text" name="name" id="footer-name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-accent focus:border-accent">
-                                </div>
-                                <!-- Surname -->
-                                <div>
-                                    <label for="footer-surname" class="block text-sm font-medium text-gray-700">Surname</label>
-                                    <input type="text" name="surname" id="footer-surname" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-accent focus:border-accent">
-                                </div>
-                                <!-- E-mail -->
-                                <div class="sm:col-span-2">
-                                    <label for="footer-email" class="block text-sm font-medium text-gray-700">E-mail</label>
-                                    <input type="email" name="email" id="footer-email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-accent focus:border-accent">
-                                </div>
-                                <!-- Telephone -->
-                                <div class="sm:col-span-2">
-                                    <label for="footer-phone" class="block text-sm font-medium text-gray-700">Telephone Number</label>
-                                    <input type="tel" name="phone" id="footer-phone" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-accent focus:border-accent">
-                                </div>
-                                <!-- Message -->
-                                <div class="sm:col-span-2">
-                                    <label for="footer-message" class="block text-sm font-medium text-gray-700">Message</label>
-                                    <textarea name="message" id="footer-message" rows="4" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-accent focus:border-accent"></textarea>
-                                </div>
-                                <!-- Vision Problem Checkboxes -->
-                                <div class="sm:col-span-2">
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">What is your vision problem? (Check all that apply)</label>
-                                    <div class="grid grid-cols-2 gap-x-4 gap-y-2">
-                                        <label for="chk-myopia" class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
-                                            <input type="checkbox" name="vision_problem[]" value="Myopia" id="chk-myopia" class="form-checkbox"> Myopia (Nearsightedness)
-                                        </label>
-                                        <label for="chk-hypermetropia" class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
-                                            <input type="checkbox" name="vision_problem[]" value="Hypermetropia" id="chk-hypermetropia" class="form-checkbox"> Hyperopia (Farsightedness)
-                                        </label>
-                                        <label for="chk-astigmatism" class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
-                                            <input type="checkbox" name="vision_problem[]" value="Astigmatism" id="chk-astigmatism" class="form-checkbox"> Astigmatism
-                                        </label>
-                                        <label for="chk-cataracts" class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
-                                            <input type="checkbox" name="vision_problem[]" value="Cataracts" id="chk-cataracts" class="form-checkbox"> Cataracts
-                                        </label>
-                                        <label for="chk-presbyopia" class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
-                                            <input type="checkbox" name="vision_problem[]" value="Presbyopia" id="chk-presbyopia" class="form-checkbox"> Presbyopia (Aging Eyes)
-                                        </label>
-                                        <label for="chk-other" class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
-                                            <input type="checkbox" name="vision_problem[]" value="Other" id="chk-other" class="form-checkbox"> Other / Not Sure
-                                        </label>
-                                    </div>
-                                </div>
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <!-- Name -->
+                            <div>
+                                <label for="footer-name" class="block text-sm font-medium text-gray-700">Name</label>
+                                <input type="text" name="name" id="footer-name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-accent focus:border-accent">
                             </div>
-                            <!-- Submit Button -->
-                            <div class="mt-6">
-                                <button type="submit" class="w-full py-3 px-6 border border-transparent rounded-lg shadow-sm text-base font-medium text-white bg-orange-400 hover:bg-accent-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent transition-all transform hover:scale-105">
-                                    Send Message
-                                </button>
+                            <!-- Surname -->
+                            <div>
+                                <label for="footer-surname" class="block text-sm font-medium text-gray-700">Surname</label>
+                                <input type="text" name="surname" id="footer-surname" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-accent focus:border-accent">
                             </div>
-                        </form>
-                    </div>
-                    
-                    <!-- Google Maps -->
-                    <div class="fade-in">
-                        <h3 class="text-2xl font-bold text-secondary mb-4">Visit Us</h3>
-                        <!-- UPDATED: Address -->
-                        <p class="text-lg text-gray-600 mb-6">
-                            EyeSTAR Lasik Institute<br>
-                            Kocatepe Mah. Cumhuriyet Cad. Ceylan Apt. No:13/1-2<br>
-                            Taksim - Beyoğlu / Türkiye
-                        </p>
-                        <div class="aspect-w-16 aspect-h-12 lg:aspect-h-10 rounded-xl shadow-xl overflow-hidden">
-                             <div class="relative h-0 pb-[75%]"> <!-- 4:3 Aspect Ratio -->
-                                <!-- UPDATED: Map Source -->
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3009.3380945270233!2d28.983161712661865!3d41.0397349712268!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab76f97a512ad%3A0x81f31af60ff4bf20!2sEyeSTAR%20LASIK%20in%20Istanbul%20Augen%20lasern!5e0!3m2!1str!2str!4v1761489853245!5m2!1str!2str" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <!-- E-mail -->
+                            <div class="sm:col-span-2">
+                                <label for="footer-email" class="block text-sm font-medium text-gray-700">E-mail</label>
+                                <input type="email" name="email" id="footer-email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-accent focus:border-accent">
+                            </div>
+                            <!-- Telephone -->
+                            <div class="sm:col-span-2">
+                                <label for="footer-phone" class="block text-sm font-medium text-gray-700">Telephone Number</label>
+                                <input type="tel" name="phone" id="footer-phone" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-accent focus:border-accent">
+                            </div>
+                            <!-- Message -->
+                            <div class="sm:col-span-2">
+                                <label for="footer-message" class="block text-sm font-medium text-gray-700">Message</label>
+                                <textarea name="message" id="footer-message" rows="4" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-accent focus:border-accent"></textarea>
                             </div>
                         </div>
-                    </div>
+                        <!-- Submit Button -->
+                        <div class="mt-6">
+                            <button type="submit" class="w-full py-3 px-6 border border-transparent rounded-lg shadow-sm text-base font-medium text-white bg-orange-400 hover:bg-accent-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent transition-all transform hover:scale-105">
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </section>
+
     </main>
     
-    <!-- 9. Footer -->
+    <!-- =========== FOOTER (COPIED FROM INDEX.HTML) =========== -->
     <footer class="bg-secondary text-gray-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
@@ -884,7 +588,7 @@
         </div>
     </footer>
     
-    <!-- NEW: Video Modal HTML -->
+    <!-- Video Modal HTML (COPIED FROM INDEX.HTML) -->
     <div id="video-modal-overlay">
         <div id="video-modal-content">
             <button id="video-modal-close" aria-label="Close video player">&times;</button>
@@ -892,6 +596,7 @@
         </div>
     </div>
     
+    <!-- Scripts (COPIED FROM INDEX.HTML) -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             
@@ -990,7 +695,7 @@
                 });
             });
 
-            // --- NEW: Video Modal Logic ---
+            // --- Video Modal Logic ---
             const videoModalOverlay = document.getElementById('video-modal-overlay');
             const videoModalIframe = document.getElementById('video-modal-iframe');
             const videoModalClose = document.getElementById('video-modal-close');
@@ -1026,4 +731,3 @@
 
 </body>
 </html>
-

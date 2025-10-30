@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Eye & Refractive Errors | EyeSTAR</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Base font */
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Add padding to the top to offset the fixed headers */
+            padding-top: 120px; /* 40px for top-bar + 80px for main-nav */
+        }
+
+        /* Custom Tailwind Config */
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FFFFFF',
+                        secondary: '#1a1a1a', /* A slightly softer black */
+                        accent: {
+                            DEFAULT: '#f97316', /* orange-500 */
+                            hover: '#ea580c' /* orange-600 */
+                        }
+                    },
+                    height: {
+                        '10': '40px',
+                        '20': '80px',
+                    },
+                    padding: {
+                        '30': '120px',
+                    }
+                }
+            }
+        };
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Styling for nested dropdowns */
+        .group:hover .group-hover\:block {
+            display: block;
+        }
+        
+        /* Mobile menu submenu toggle */
+        .submenu-toggle + .submenu {
+            display: none;
+        }
+        .submenu-toggle.active + .submenu {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-primary text-secondary">
+
+    <header class="fixed top-0 left-0 w-full z-50">
+        <!-- 1. Top Bar -->
+        <!-- UPDATED: bg-white, text-secondary, shadow-sm -->
+        <div id="top-bar" class="bg-white text-secondary h-10 shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
+                <!-- Contact Info -->
+                <div class="flex items-center gap-4 sm:gap-6">
+                    <a href="tel:+902123615000" class="flex items-center gap-2 text-sm hover:text-accent transition-colors">
+                        <!-- Phone Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                        <span class="hidden sm:inline">+90 212 361 5000</span>
+                    </a>
+                    <a href="tel:+905415001900" class="flex items-center gap-2 text-sm hover:text-accent transition-colors">
+                        <!-- WP Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+                            <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+                            </svg>
+                        <span class="hidden sm:inline">+90 541 500 1900</span>
+                    </a>
+                    <a href="mailto:info@eyestar.us" class="flex items-center gap-2 text-sm hover:text-accent transition-colors">
+                        <!-- Mail Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <span class="hidden sm:inline">info@eyestar.us</span>
+                    </a>
+                </div>
+                <!-- Socials -->
+                <div class="flex items-center gap-3 sm:gap-4">
+                    <!-- UPDATED: text-secondary -->
+                    <a href="https://www.facebook.com/eyestar" target="_blank" class="text-secondary hover:text-accent transition-colors" aria-label="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                        <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/lasikinistanbul/" target="_blank" class="text-secondary hover:text-accent transition-colors" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+                        <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+                        </svg>
+                    </a>
+                    <!-- UPDATED: text-secondary -->
+                    <a href="https://www.youtube.com/channel/UCL6HA5afxp-WIZcLIDv1PLQ" target="_blank" class="text-secondary hover:text-accent transition-colors" aria-label="YouTube">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
+                        <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"/>
+                        </svg>
+                    </a>
+                    <!-- UPDATED: text-secondary -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- 2. Main Navigation -->
+        <!-- UPDATED: bg-white, shadow-md (removed backdrop-blur) -->
+        <nav id="main-nav" class="bg-white shadow-md h-20">
+            <!-- UPDATED: Desktop nav structure for centering links -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="index.html">
+                        <img class="h-16 w-auto" src="lasik-logo.png" alt="EyeSTAR Logo">
+                    </a>
+                </div>
+
+                <!-- Desktop Menu (Centered Links) -->
+                <div class="hidden lg:flex flex-grow justify-center">
+                    <ul class="flex items-center space-x-1">
+                        <li><a href="faq.html" class="px-3 py-2 rounded-md text-sm font-medium text-secondary hover:bg-gray-100 hover:text-accent transition-all duration-200">Your Questions</a></li>
+                        
+                        <!-- L1 Dropdown: EyeSTAR LASIK Institute -->
+                        <li class="relative group">
+                            <button class="px-3 py-2 rounded-md text-sm font-medium text-secondary hover:bg-gray-100 hover:text-accent transition-all duration-200 flex items-center">
+                                EyeSTAR LASIK Institute
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                            </button>
+                            <!-- L2 Dropdown -->
+                            <ul class="absolute top-full left-0 mt-1 w-60 bg-white shadow-lg rounded-md ring-1 ring-black ring-opacity-5 hidden group-hover:block transition-all duration-300 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0">
+                                <li><a href="lasikinst.html" class="block px-4 py-3 text-sm text-secondary hover:bg-gray-100 hover:text-accent">The LASIK Institute</a></li>
+                                <li><a href="lasiktech.html" class="block px-4 py-3 text-sm text-secondary hover:bg-gray-100 hover:text-accent">The LASIK Technology</a></li>
+                                <li><a href="team.html" class="block px-4 py-3 text-sm text-secondary hover:bg-gray-100 hover:text-accent">The LASIK Team</a></li>
+                                
+                                <!-- L2 Dropdown with L3: EyeSTAR Treatments -->
+                                <li class="relative group/sub">
+                                    <a href="#" class="w-full px-4 py-3 text-sm text-secondary hover:bg-gray-100 hover:text-accent flex items-center justify-between">
+                                        EyeSTAR Treatments
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                                    </a>
+                                    <!-- L3 Dropdown -->
+                                    <ul class="absolute top-0 left-full ml-1 w-60 bg-white shadow-lg rounded-md overflow-hidden ring-1 ring-black ring-opacity-5 hidden group-hover/sub:block transition-all duration-300 opacity-0 group-hover/sub:opacity-100 transform translate-x-2 group-hover/sub:translate-x-0">
+                                        <li><a href="eye.html" class="block px-4 py-3 text-sm text-secondary hover:bg-gray-100 hover:text-accent">The Eye</a></li>
+                                        <li><a href="islasikforme.html" class="block px-4 py-3 text-sm text-secondary hover:bg-gray-100 hover:text-accent">Is LASIK for me?</a></li>
+                                        <li><a href="starttofinish.html" class="block px-4 py-3 text-sm text-secondary hover:bg-gray-100 hover:text-accent">LASIK Start to Finish</a></li>
+                                        <li><a href="beforelasik.html" class="block px-4 py-3 text-sm text-secondary hover:bg-gray-100 hover:text-accent">Before LASIK</a></li>
+                                        <li><a href="contouralasik.html" class="block px-4 py-3 text-sm text-secondary hover:bg-gray-100 hover:text-accent">Contoura LASIK</a></li>
+                                        <li><a href="othertreatments.html" class="block px-4 py-3 text-sm text-secondary hover:bg-gray-100 hover:text-accent">Other Treatments</a></li>
+                                        <li><a href="lasekandprk.html" class="block px-4 py-3 text-sm text-secondary hover:bg-gray-100 hover:text-accent">LASEK and PRK</a></li>
+                                        <li><a href="results.html" class="block px-4 py-3 text-sm text-secondary hover:bg-gray-100 hover:text-accent">LASIK Results</a></li>
+                                        <li><a href="risks.html" class="block px-4 py-3 text-sm text-secondary hover:bg-gray-100 hover:text-accent">LASIK Risks</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li><a href="lcg.html" class="px-3 py-2 rounded-md text-sm font-medium text-secondary hover:bg-gray-100 hover:text-accent transition-all duration-200">Lifetime Care Guarantee</a></li>
+                        <li><a href="index.html#patients" class="px-3 py-2 rounded-md text-sm font-medium text-secondary hover:bg-gray-100 hover:text-accent transition-all duration-200">The Patients</a></li>
+                        <li><a href="trip.html" class="px-3 py-2 rounded-md text-sm font-medium text-secondary hover:bg-gray-100 hover:text-accent transition-all duration-200">The Trip</a></li>
+                        <li><a href="news.html" class="px-3 py-2 rounded-md text-sm font-medium text-secondary hover:bg-gray-100 hover:text-accent transition-all duration-200">EyeSTAR in the News</a></li>
+                        <li><a href="pp.html" class="px-3 py-2 rounded-md text-sm font-medium text-secondary hover:bg-gray-100 hover:text-accent transition-all duration-200">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Desktop 'Contact Us' Button (Right) -->
+                <div class="hidden lg:flex items-center flex-shrink-0">
+                     <a href="index.html" class="px-5 py-2 rounded-full text-sm font-semibold text-white bg-orange-400 hover:bg-accent-hover shadow-lg transition-all transform hover:scale-105">
+                        Contact Us
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden">
+                    <button id="menu-toggle" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-secondary hover:text-accent hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <!-- Menu Icon -->
+                        <svg id="menu-icon-open" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <!-- Close Icon -->
+                        <svg id="menu-icon-close" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="lg:hidden hidden" id="mobile-menu">
+                <ul class="absolute top-full left-0 w-full bg-white shadow-lg py-2 max-h-[calc(100vh-120px)] overflow-y-auto">
+                    <li><a href="faq.html" class="block px-5 py-3 text-base font-medium text-secondary hover:bg-gray-100 hover:text-accent">Your Questions</a></li>
+                    
+                    <!-- Mobile L1: EyeSTAR LASIK Institute -->
+                    <li>
+                        <button class="submenu-toggle w-full flex items-center justify-between px-5 py-3 text-base font-medium text-secondary hover:bg-gray-100 hover:text-accent">
+                            EyeSTAR LASIK Institute
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                        </button>
+                        <!-- Mobile L2 -->
+                        <ul class="submenu pl-4 bg-gray-50">
+                            <li><a href="lasikinst.html" class="block px-5 py-3 text-sm font-medium text-gray-600 hover:bg-gray-200 hover:text-accent">The LASIK Institute</a></li>
+                            <li><a href="lasiktech.html" class="block px-5 py-3 text-sm font-medium text-gray-600 hover:bg-gray-200 hover:text-accent">The LASIK Technology</a></li>
+                            <li><a href="team.html" class="block px-5 py-3 text-sm font-medium text-gray-600 hover:bg-gray-200 hover:text-accent">The LASIK Team</a></li>
+                            
+                            <!-- Mobile L2 with L3: EyeSTAR Treatments -->
+                            <li>
+                                <button class="submenu-toggle w-full flex items-center justify-between px-5 py-3 text-sm font-medium text-gray-600 hover:bg-gray-200 hover:text-accent">
+                                    EyeSTAR Treatments
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                                </button>
+                                <!-- Mobile L3 -->
+                                <ul class="submenu pl-4 bg-gray-100">
+                                    <li><a href="eye.html" class="block px-5 py-3 text-xs font-medium text-gray-500 hover:bg-gray-200 hover:text-accent">The Eye</a></li>
+                                    <li><a href="islasikforme.html" class="block px-5 py-3 text-xs font-medium text-gray-500 hover:bg-gray-200 hover:text-accent">Is LASIK for me?</a></li>
+                                    <li><a href="starttofinish.html" class="block px-5 py-3 text-xs font-medium text-gray-500 hover:bg-gray-200 hover:text-accent">LASIK Start to Finish</a></li>
+                                    <li><a href="beforelasik.html" class="block px-5 py-3 text-xs font-medium text-gray-500 hover:bg-gray-200 hover:text-accent">Before LASIK</a></li>
+                                    <li><a href="contouralasik.html" class="block px-5 py-3 text-xs font-medium text-gray-500 hover:bg-gray-200 hover:text-accent">Contoura LASIK</a></li>
+                                    <li><a href="othertreatments.html" class="block px-5 py-3 text-xs font-medium text-gray-500 hover:bg-gray-200 hover:text-accent">Other Treatments</a></li>
+                                    <li><a href="lasekandprk.html" class="block px-5 py-3 text-xs font-medium text-gray-500 hover:bg-gray-200 hover:text-accent">LASEK and PRK</a></li>
+                                    <li><a href="results.html" class="block px-5 py-3 text-xs font-medium text-gray-500 hover:bg-gray-200 hover:text-accent">LASIK Results</a></li>
+                                    <li><a href="risks.html" class="block px-5 py-3 text-xs font-medium text-gray-500 hover:bg-gray-200 hover:text-accent">LASIK Risks</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <li><a href="lcg.html" class="block px-5 py-3 text-base font-medium text-secondary hover:bg-gray-100 hover:text-accent">Lifetime Care Guarantee</a></li>
+                    <li><a href="index.html#patients" class="block px-5 py-3 text-base font-medium text-secondary hover:bg-gray-100 hover:text-accent">The Patients</a></li>
+                    <li><a href="trip.html" class="block px-5 py-3 text-base font-medium text-secondary hover:bg-gray-100 hover:text-accent">The Trip</a></li>
+                    <li><a href="news.html" class="block px-5 py-3 text-base font-medium text-secondary hover:bg-gray-100 hover:text-accent">EyeSTAR in the News</a></li>
+                    <li><a href="pp.html" class="block px-5 py-3 text-base font-medium text-secondary hover:bg-gray-100 hover:text-accent">Privacy Policy</a></li>
+                    <li><a href="#contact" class="block px-5 py-4 text-base font-medium text-white bg-orange-400 text-center">Contact Us</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="relative bg-gray-800 py-20 md:py-32 -mt-30">
+            <div class="absolute inset-0">
+                <img src="lasik-bg.jpg" alt="Close-up of a human eye" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-secondary/70"></div>
+            </div>
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+                <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight">Understanding The Eye</h1>
+                <p class="mt-4 text-xl text-white max-w-3xl mx-auto">Explore how vision works and learn about common refractive errors we can correct.</p>
+            </div>
+        </section>
+
+        <section class="py-16 sm:py-24 bg-primary">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
+                    <div class="fade-in">
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-secondary tracking-tight">How We See: An Incredible Process</h2>
+                        <div class="mt-6 text-lg text-gray-700 space-y-4">
+                            <p>The eye is an amazing organ, responsible for approximately 80% of human perception. It functions like a sophisticated video camera. Light enters through the cornea, which provides 70% of the eye's refractive power. It then passes through the pupil to the lens, which makes fine adjustments to focus the light onto the retina. This continuous auto-focus function is called accommodation. The retina converts the light into electrical impulses, which are sent to the brain via the optic nerve and perceived as images.</p>
+                        </div>
+                    </div>
+                    <div class="mt-10 lg:mt-0 fade-in">
+                        <img class="rounded-lg shadow-xl" src="2000px-Schematic_diagram_of_the_human_eye_en.svg_k1kqih.png" alt="Diagram of the human eye">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="errors" class="py-16 sm:py-24 bg-gray-50">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-secondary tracking-tight">What are Refractive Errors?</h2>
+                <p class="mt-4 text-xl text-gray-600">A refractive error means the shape of your eye doesn't bend light correctly, resulting in a blurred image. An eye with no refractive errors is called 'emmetropic'. Common errors include myopia (nearsightedness), hyperopia (farsightedness), astigmatism, and presbyopia. These are measured in units called diopters (D).</p>
+            </div>
+        </section>
+        
+        <section class="py-16 sm:py-24 bg-primary">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
+                    <div class="fade-in">
+                         <h2 class="text-3xl sm:text-4xl font-extrabold text-secondary tracking-tight">How to Read Your Prescription</h2>
+                        <div class="mt-6 text-lg text-gray-700 space-y-4">
+                            <p>Your prescription has columns for each eye: OD/R for right and OS/L for left. The main columns are:</p>
+                            <ul class="list-disc list-inside space-y-2">
+                                <li><strong>Sph (Spherical):</strong> Shows the magnitude of your myopia or hyperopia. A minus (-) sign indicates myopia, while a plus (+) sign indicates hyperopia.</li>
+                                <li><strong>Cyl (Cylindrical) & Axis:</strong> These values describe the lens needed to correct your astigmatism, showing its magnitude and orientation.</li>
+                                <li><strong>Add:</strong> If you are over 40, an extra line for "near" or "add" may be present to correct for presbyopia (difficulty with reading).</li>
+                            </ul>
+                            <p class="mt-4">Still confused? Feel free to e-mail us your prescription, and we will be happy to advise you.</p>
+                        </div>
+                    </div>
+                    <div class="mt-10 lg:mt-0 fade-in grid grid-cols-1 gap-8">
+                        <img class="rounded-lg shadow-xl" src="e43597cc-0a7b-424f-8035-85f0e8361bcd_zvomls.jpg" alt="Example of an eye prescription chart">
+                        <img class="rounded-lg shadow-xl" src="07.12_crven_karmin_fmq1hk_uyxomq.jpg" alt="Patient getting an eye exam">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 sm:py-24 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
+                     <div class="fade-in">
+                        <img class="rounded-lg shadow-xl" src="740302_482660.png" alt="Comparison of normal and myopic vision">
+                    </div>
+                    <div class="mt-10 lg:mt-0 fade-in">
+                        <h3 class="text-3xl font-extrabold text-secondary tracking-tight">Myopia (Nearsightedness)</h3>
+                        <p class="mt-4 text-lg text-gray-600">Myopia is the inability to see distant objects well. Light rays focus in front of the retina, making distant objects seem blurry while near objects remain clear. It often starts in childhood and stabilizes around age 20. The definitive treatment is laser vision correction.</p>
+                         <div class="mt-6 text-base text-gray-500">
+                             <p><strong>Mild:</strong> &lt; -3.00 D</p>
+                             <p><strong>Moderate:</strong> -3.00 to -6.00 D</p>
+                             <p><strong>Severe:</strong> &gt; -6.00 D</p>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 sm:py-24 bg-primary">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
+                    <div class="fade-in lg:order-2">
+                        <img class="rounded-lg shadow-xl" src="953314_836127.png" alt="Example of hyperopic or farsighted vision">
+                    </div>
+                    <div class="mt-10 lg:mt-0 lg:order-1 fade-in">
+                        <h3 class="text-3xl font-extrabold text-secondary tracking-tight">Hyperopia (Farsightedness)</h3>
+                        <p class="mt-4 text-lg text-gray-600">Hyperopia is difficulty seeing close objects clearly. The eye focuses light from near objects behind the retina. Young people may compensate using their eye's accommodation function, but this can cause headaches and eye strain. The condition is corrected with convex lenses or laser vision correction.</p>
+                         <div class="mt-6 text-base text-gray-500">
+                             <p><strong>Mild:</strong> &lt; +2.00 D</p>
+                             <p><strong>Moderate:</strong> +2.00 to +4.00 D</p>
+                             <p><strong>Severe:</strong> &gt; +4.00 D</p>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 sm:py-24 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
+                     <div class="fade-in">
+                        <img class="rounded-lg shadow-xl" src="vision_stigma_hcaajc.jpg" alt="Example of vision with astigmatism">
+                    </div>
+                    <div class="mt-10 lg:mt-0 fade-in">
+                        <h3 class="text-3xl font-extrabold text-secondary tracking-tight">Astigmatism</h3>
+                        <p class="mt-4 text-lg text-gray-600">Astigmatism occurs when the cornea has a distorted or "egg-shaped" curvature, causing light to scatter and focus on multiple points. This results in blurry, ghosted, or smudged vision for both near and distant objects. Astigmatism is treatable with LASIK, and advanced cases may benefit from custom wavefront treatments.</p>
+                        <div class="mt-6 text-base text-gray-500">
+                             <p><strong>Mild:</strong> &lt; 1.00 D</p>
+                             <p><strong>Moderate:</strong> 1.00 to 2.00 D</p>
+                             <p><strong>Extreme:</strong> &gt; 3.00 D</p>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 sm:py-24 bg-primary">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
+                    <div class="fade-in lg:order-2">
+                        <img class="rounded-lg shadow-xl" src="glasses-272399_960_720_s2oxgc.jpg" alt="Reading glasses on an open book, symbolizing presbyopia">
+                    </div>
+                    <div class="mt-10 lg:mt-0 lg:order-1 fade-in">
+                        <h3 class="text-3xl font-extrabold text-secondary tracking-tight">Presbyopia (Aging Eyes)</h3>
+                        <p class="mt-4 text-lg text-gray-600">Presbyopia is a natural, age-related condition that typically begins after age 40. The eye's lens loses its flexibility, decreasing its ability to accommodate and focus on close objects, which results in blurred near vision. People with presbyopia often find themselves holding reading materials farther away to see them clearly. Solutions include reading glasses and advanced procedures like progressive LASIK.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="bg-secondary text-gray-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <!-- Logo & Contact -->
+                <div class="space-y-6">
+                    <a href="#">
+                        <img class="h-16 w-auto" src="lasik-logo.png" alt="EyeSTAR Logo">
+                    </a>
+                    <p class="text-sm text-gray-400">
+                        Leading the world in advanced vision correction.
+                    </p>
+                    <div class="space-y-3">
+                        <a href="tel:+902123615000" class="flex items-center gap-3 text-sm hover:text-accent transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            <span>+90 212 361 5000</span>
+                        </a>
+                        <a href="tel:+905415001900" class="flex items-center gap-3 text-sm hover:text-accent transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+                                <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+                            </svg>
+                        <span>+90 541 500 1900</span>
+                    </a>
+                        <a href="mailto:info@eyestar.com" class="flex items-center gap-3 text-sm hover:text-accent transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <span>info@eyestar.us</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Links: LASIK Institute -->
+                <div>
+                    <h5 class="text-base font-semibold text-white tracking-wider uppercase">EyeSTAR LASIK Institute</h5>
+                    <ul class="mt-4 space-y-3">
+                        <li><a href="lasikinst.html" class="text-sm text-gray-300 hover:text-accent transition-colors">The LASIK Institute</a></li>
+                        <li><a href="lasiktech.html" class="text-sm text-gray-300 hover:text-accent transition-colors">The LASIK Technology</a></li>
+                        <li><a href="team.html" class="text-sm text-gray-300 hover:text-accent transition-colors">The LASIK Team</a></li>
+                        <li><a href="lcg.html" class="text-sm text-gray-300 hover:text-accent transition-colors">Lifetime Care Guarantee</a></li>
+                    </ul>
+                </div>
+
+                <!-- Links: Treatments -->
+                <div>
+                    <h5 class="text-base font-semibold text-white tracking-wider uppercase">EyeSTAR Treatments</h5>
+                    <ul class="mt-4 space-y-3">
+                        <li><a href="islasikforme.html" class="text-sm text-gray-300 hover:text-accent transition-colors">Is LASIK for me?</a></li>
+                        <li><a href="starttofinish.html" class="text-sm text-gray-300 hover:text-accent transition-colors">LASIK Start to Finish</a></li>
+                        <li><a href="contouralasik.html" class="text-sm text-gray-300 hover:text-accent transition-colors">Contoura LASIK</a></li>
+                        <li><a href="lasekandprk.html" class="text-sm text-gray-300 hover:text-accent transition-colors">LASEK and PRK</a></li>
+                        <li><a href="results.html" class="text-sm text-gray-300 hover:text-accent transition-colors">LASIK Results</a></li>
+                        <li><a href="risks.html" class="text-sm text-gray-300 hover:text-accent transition-colors">LASIK Risks</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Links: Patients -->
+                <div>
+                    <h5 class="text-base font-semibold text-white tracking-wider uppercase">Patient Info</h5>
+                    <ul class="mt-4 space-y-3">
+                        <li><a href="faq.html" class="text-sm text-gray-300 hover:text-accent transition-colors">Your Questions</a></li>
+                        <li><a href="index.html#patients" class="text-sm text-gray-300 hover:text-accent transition-colors">The Patients</a></li>
+                        <li><a href="trip.html" class="text-sm text-gray-300 hover:text-accent transition-colors">The Trip</a></li>
+                        <li><a href="news.html" class="text-sm text-gray-300 hover:text-accent transition-colors">EyeSTAR in the News</a></li>
+                        <li><a href="index.html" class="text-sm text-gray-300 hover:text-accent transition-colors">Contact Us</a></li>
+                        <li><a href="pp.html" class="text-sm text-gray-300 hover:text-accent transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Footer Bottom -->
+            <div class="mt-12 border-t border-gray-700 pt-8 flex flex-col sm:flex-row items-center justify-between">
+                <p class="text-sm text-gray-400">&copy; 2025 EyeSTAR LASIK Institute. All rights reserved.</p>
+                <div class="flex items-center gap-5 mt-4 sm:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-accent transition-colors" aria-label="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-accent transition-colors" aria-label="Twitter">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.616 1.956 2.398 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-accent transition-colors" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.148 3.227-1.667 4.77-4.919 4.919-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.07-1.646-.07-4.85s.012-3.584.07-4.85c.148-3.227 1.667-4.77 4.919-4.919 1.266-.058 1.646.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.059 1.689.073 4.948.073s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44-.645-1.44-1.441-1.44z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- 1. Mobile Menu Toggle ---
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIconOpen = document.getElementById('menu-icon-open');
+            const menuIconClose = document.getElementById('menu-icon-close');
+            
+            menuToggle.addEventListener('click', () => {
+                const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+                menuToggle.setAttribute('aria-expanded', !isExpanded);
+                mobileMenu.classList.toggle('hidden');
+                menuIconOpen.classList.toggle('hidden');
+                menuIconClose.classList.toggle('hidden');
+            });
+            
+            // --- 2. Mobile Submenu Toggles ---
+            const submenuToggles = document.querySelectorAll('.submenu-toggle');
+            submenuToggles.forEach(toggle => {
+                toggle.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    toggle.classList.toggle('active');
+                    const submenu = toggle.nextElementSibling;
+                    const arrow = toggle.querySelector('svg');
+                    
+                    if (submenu.style.display === 'block') {
+                        submenu.style.display = 'none';
+                        if (arrow) arrow.style.transform = 'rotate(0deg)';
+                    } else {
+                        submenu.style.display = 'block';
+                        if (arrow) arrow.style.transform = 'rotate(180deg)';
+                    }
+                });
+            });
+
+            // --- 3. Scroll Fade-in Animations ---
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.1 // Trigger when 10% of the element is visible
+                });
+                
+                fadeElements.forEach(el => {
+                    observer.observe(el);
+                });
+            } else {
+                // Fallback for older browsers
+                fadeElements.forEach(el => {
+                    el.classList.add('visible');
+                });
+            }
+            
+            // --- 4. Close mobile menu when a link is clicked ---
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (!link.parentElement.querySelector('.submenu')) {
+                         menuToggle.click();
+                    }
+                });
+            });
+
+        });
+    </script>
+
+</body>
+</html>

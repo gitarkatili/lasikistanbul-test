@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page-specific title -->
+    <title>Your Questions - EyeSTAR LASIK Institute</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Base font */
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Add padding to the top to offset the fixed headers */
+            padding-top: 120px; /* 40px for top-bar + 80px for main-nav */
+        }
+
+        /* Custom Tailwind Config */
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FFFFFF',
+                        secondary: '#1a1a1a', /* A slightly softer black */
+                        accent: {
+                            DEFAULT: '#f97316', /* orange-500 */
+                            hover: '#ea580c' /* orange-600 */
+                        }
+                    },
+                    height: {
+                        '10': '40px',
+                        '20': '80px',
+                    },
+                    padding: {
+                        '30': '120px',
+                    }
+                }
+            }
+        };
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Styling for nested dropdowns */
+        .group:hover .group-hover\:block {
+            display: block;
+        }
+        
+        /* Mobile menu submenu toggle */
+        .submenu-toggle + .submenu {
+            display: none;
+        }
+        .submenu-toggle.active + .submenu {
+            display: block;
+        }
+
+        /* FAQ Accordion (Styles kept for other pages, but not used here) */
+        .faq-answer {
+            transition: max-height 0.3s ease-out;
+        }
+        
+        /* Custom checkbox */
+        .form-checkbox {
+            appearance: none;
+            -webkit-appearance: none;
+            height: 1.25rem;
+            width: 1.25rem;
+            border: 2px solid #d1d5db; /* gray-300 */
+            border-radius: 0.25rem;
+            display: inline-block;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .form-checkbox:checked {
+            background-color: #f97316; /* accent */
+            border-color: #f97316;
+        }
+        
+        .form-checkbox:checked::after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='white'%3E%3Cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3E%3C/svg%3E");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        /* Video Modal Styles */
+        #video-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 100;
+            display: none; /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+        }
+        
+        #video-modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 960px;
+            height: 0;
+            padding-bottom: 50.625%; /* 16:9 aspect ratio */
+            background-color: #000;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+        
+        #video-modal-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 0.5rem;
+        }
+        
+        #video-modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            width: 32px;
+            height: 32px;
+            color: #fff;
+            background: transparent;
+            border: none;
+            font-size: 2.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 0.5;
+        }
+    </style>
+</head>
+<body class="bg-primary text-secondary">
+
+    <!-- =========== HEADER (Copied from index.html) =========== -->
+    <header class="fixed top-0 left-0 w-full z-50">
+        <!-- 1. Top Bar -->
+        <!-- UPDATED: bg-white, text-secondary, shadow-sm -->
+        <div id="top-bar" class="bg-white text-secondary h-10 shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
+                <!-- Contact Info -->
+                <div class="flex items-center gap-4 sm:gap-6">
+                    <a href="tel:+902123615000" class="flex items-center gap-2 text-sm hover:text-accent transition-colors">
+                        <!-- Phone Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                        <span class="hidden sm:inline">+90 212 361 5000</span>
+                    </a>
+                    <a href="tel:+905415001900" class="flex items-center gap-2 text-sm hover:text-accent transition-colors">
+                        <!-- WP Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+                            <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+                            </svg>
+                        <span class="hidden sm:inline">+90 541 500 1900</span>
+                    </a>
+                    <a href="mailto:info@eyestar.us" class="flex items-center gap-2 text-sm hover:text-accent transition-colors">
+                        <!-- Mail Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <span class="hidden sm:inline">info@eyestar.us</span>
+                    </a>
+                </div>
+                <!-- Socials -->
+                <div class="flex items-center gap-3 sm:gap-4">
+                    <!-- UPDATED: text-secondary -->
+                    <a href="https://www.facebook.com/eyestar" target="_blank" class="text-secondary hover:text-accent transition-colors" aria-label="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                        <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/lasikinistanbul/" target="_blank" class="text-secondary hover:text-accent transition-colors" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+                        <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+                        </svg>
+                    </a>
+                    <!-- UPDATED: text-secondary -->
+                    <a href="https://www.youtube.com/channel/UCL6HA5afxp-WIZcLIDv1PLQ" target="_blank" class="text-secondary hover:text-accent transition-colors" aria-label="YouTube">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
+                        <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"/>
+                        </svg>
+                    </a>
+                    <!-- UPDATED: text-secondary -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- 2. Main Navigation -->
+        <!-- UPDATED: bg-white, shadow-md (removed backdrop-blur) -->
+        <nav id="main-nav" class="bg-white shadow-md h-20">
+            <!-- UPDATED: Desktop nav structure for centering links -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="index.html">
+                        <img class="h-16 w-auto" src="lasik-logo.png" alt="EyeSTAR Logo">
+                    </a>
+                </div>
+
+                <!-- Desktop Menu (Centered Links) -->
+                <div class="hidden lg:flex flex-grow justify-center">
+                    <ul class="flex items-center space-x-1">
+                        <li><a href="faq.html" class="px-3 py-2 rounded-md text-sm font-medium text-secondary hover:bg-gray-100 hover:text-accent transition-all duration-200">Your Questions</a></li>
+                        
+                        <!-- L1 Dropdown: EyeSTAR LASIK Institute -->
+                        <li class="relative group">
+                            <button class="px-3 py-2 rounded-md text-sm font-medium text-secondary hover:bg-gray-100 hover:text-accent transition-all duration-200 flex items-center">
+                                EyeSTAR LASIK Institute
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                            </button>
+                            <!-- L2 Dropdown -->
+                            <ul class="absolute top-full left-0 mt-1 w-60 bg-white shadow-lg rounded-md ring-1 ring-black ring-opacity-5 hidden group-hover:block transition-all duration-300 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0">
+                                <li><a href="lasikinst.html" class="block px-4 py-3 text-sm text-secondary hover:bg-gray-100 hover:text-accent">The LASIK Institute</a></li>
+                                <li><a href="lasiktech.html" class="block px-4 py-3 text-sm text-secondary hover:bg-gray-100 hover:text-accent">The LASIK Technology</a></li>
+                                <li><a href="team.html" class="block px-4 py-3 text-sm text-secondary hover:bg-gray-100 hover:text-accent">The LASIK Team</a></li>
+                                
+                                <!-- L2 Dropdown with L3: EyeSTAR Treatments -->
+                                <li class="relative group/sub">
+                                    <a href="#" class="w-full px-4 py-3 text-sm text-secondary hover:bg-gray-100 hover:text-accent flex items-center justify-between">
+                                        EyeSTAR Treatments
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                                    </a>
+                                    <!-- L3 Dropdown -->
+                                    <ul class="absolute top-0 left-full ml-1 w-60 bg-white shadow-lg rounded-md overflow-hidden ring-1 ring-black ring-opacity-5 hidden group-hover/sub:block transition-all duration-300 opacity-0 group-hover/sub:opacity-100 transform translate-x-2 group-hover/sub:translate-x-0">
+                                        <li><a href="eye.html" class="block px-4 py-3 text-sm text-secondary hover:bg-gray-100 hover:text-accent">The Eye</a></li>
+                                        <li><a href="islasikforme.html" class="block px-4 py-3 text-sm text-secondary hover:bg-gray-100 hover:text-accent">Is LASIK for me?</a></li>
+                                        <li><a href="starttofinish.html" class="block px-4 py-3 text-sm text-secondary hover:bg-gray-100 hover:text-accent">LASIK Start to Finish</a></li>
+                                        <li><a href="beforelasik.html" class="block px-4 py-3 text-sm text-secondary hover:bg-gray-100 hover:text-accent">Before LASIK</a></li>
+                                        <li><a href="contouralasik.html" class="block px-4 py-3 text-sm text-secondary hover:bg-gray-100 hover:text-accent">Contoura LASIK</a></li>
+                                        <li><a href="othertreatments.html" class="block px-4 py-3 text-sm text-secondary hover:bg-gray-100 hover:text-accent">Other Treatments</a></li>
+                                        <li><a href="lasekandprk.html" class="block px-4 py-3 text-sm text-secondary hover:bg-gray-100 hover:text-accent">LASEK and PRK</a></li>
+                                        <li><a href="results.html" class="block px-4 py-3 text-sm text-secondary hover:bg-gray-100 hover:text-accent">LASIK Results</a></li>
+                                        <li><a href="risks.html" class="block px-4 py-3 text-sm text-secondary hover:bg-gray-100 hover:text-accent">LASIK Risks</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li><a href="lcg.html" class="px-3 py-2 rounded-md text-sm font-medium text-secondary hover:bg-gray-100 hover:text-accent transition-all duration-200">Lifetime Care Guarantee</a></li>
+                        <li><a href="index.html#patients" class="px-3 py-2 rounded-md text-sm font-medium text-secondary hover:bg-gray-100 hover:text-accent transition-all duration-200">The Patients</a></li>
+                        <li><a href="trip.html" class="px-3 py-2 rounded-md text-sm font-medium text-secondary hover:bg-gray-100 hover:text-accent transition-all duration-200">The Trip</a></li>
+                        <li><a href="news.html" class="px-3 py-2 rounded-md text-sm font-medium text-secondary hover:bg-gray-100 hover:text-accent transition-all duration-200">EyeSTAR in the News</a></li>
+                        <li><a href="pp.html" class="px-3 py-2 rounded-md text-sm font-medium text-secondary hover:bg-gray-100 hover:text-accent transition-all duration-200">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Desktop 'Contact Us' Button (Right) -->
+                <div class="hidden lg:flex items-center flex-shrink-0">
+                     <a href="index.html" class="px-5 py-2 rounded-full text-sm font-semibold text-white bg-orange-400 hover:bg-accent-hover shadow-lg transition-all transform hover:scale-105">
+                        Contact Us
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden">
+                    <button id="menu-toggle" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-secondary hover:text-accent hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <!-- Menu Icon -->
+                        <svg id="menu-icon-open" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <!-- Close Icon -->
+                        <svg id="menu-icon-close" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="lg:hidden hidden" id="mobile-menu">
+                <ul class="absolute top-full left-0 w-full bg-white shadow-lg py-2 max-h-[calc(100vh-120px)] overflow-y-auto">
+                    <li><a href="faq.html" class="block px-5 py-3 text-base font-medium text-secondary hover:bg-gray-100 hover:text-accent">Your Questions</a></li>
+                    
+                    <!-- Mobile L1: EyeSTAR LASIK Institute -->
+                    <li>
+                        <button class="submenu-toggle w-full flex items-center justify-between px-5 py-3 text-base font-medium text-secondary hover:bg-gray-100 hover:text-accent">
+                            EyeSTAR LASIK Institute
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                        </button>
+                        <!-- Mobile L2 -->
+                        <ul class="submenu pl-4 bg-gray-50">
+                            <li><a href="lasikinst.html" class="block px-5 py-3 text-sm font-medium text-gray-600 hover:bg-gray-200 hover:text-accent">The LASIK Institute</a></li>
+                            <li><a href="lasiktech.html" class="block px-5 py-3 text-sm font-medium text-gray-600 hover:bg-gray-200 hover:text-accent">The LASIK Technology</a></li>
+                            <li><a href="team.html" class="block px-5 py-3 text-sm font-medium text-gray-600 hover:bg-gray-200 hover:text-accent">The LASIK Team</a></li>
+                            
+                            <!-- Mobile L2 with L3: EyeSTAR Treatments -->
+                            <li>
+                                <button class="submenu-toggle w-full flex items-center justify-between px-5 py-3 text-sm font-medium text-gray-600 hover:bg-gray-200 hover:text-accent">
+                                    EyeSTAR Treatments
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                                </button>
+                                <!-- Mobile L3 -->
+                                <ul class="submenu pl-4 bg-gray-100">
+                                    <li><a href="eye.html" class="block px-5 py-3 text-xs font-medium text-gray-500 hover:bg-gray-200 hover:text-accent">The Eye</a></li>
+                                    <li><a href="islasikforme.html" class="block px-5 py-3 text-xs font-medium text-gray-500 hover:bg-gray-200 hover:text-accent">Is LASIK for me?</a></li>
+                                    <li><a href="starttofinish.html" class="block px-5 py-3 text-xs font-medium text-gray-500 hover:bg-gray-200 hover:text-accent">LASIK Start to Finish</a></li>
+                                    <li><a href="beforelasik.html" class="block px-5 py-3 text-xs font-medium text-gray-500 hover:bg-gray-200 hover:text-accent">Before LASIK</a></li>
+                                    <li><a href="contouralasik.html" class="block px-5 py-3 text-xs font-medium text-gray-500 hover:bg-gray-200 hover:text-accent">Contoura LASIK</a></li>
+                                    <li><a href="othertreatments.html" class="block px-5 py-3 text-xs font-medium text-gray-500 hover:bg-gray-200 hover:text-accent">Other Treatments</a></li>
+                                    <li><a href="lasekandprk.html" class="block px-5 py-3 text-xs font-medium text-gray-500 hover:bg-gray-200 hover:text-accent">LASEK and PRK</a></li>
+                                    <li><a href="results.html" class="block px-5 py-3 text-xs font-medium text-gray-500 hover:bg-gray-200 hover:text-accent">LASIK Results</a></li>
+                                    <li><a href="risks.html" class="block px-5 py-3 text-xs font-medium text-gray-500 hover:bg-gray-200 hover:text-accent">LASIK Risks</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <li><a href="lcg.html" class="block px-5 py-3 text-base font-medium text-secondary hover:bg-gray-100 hover:text-accent">Lifetime Care Guarantee</a></li>
+                    <li><a href="index.html#patients" class="block px-5 py-3 text-base font-medium text-secondary hover:bg-gray-100 hover:text-accent">The Patients</a></li>
+                    <li><a href="trip.html" class="block px-5 py-3 text-base font-medium text-secondary hover:bg-gray-100 hover:text-accent">The Trip</a></li>
+                    <li><a href="news.html" class="block px-5 py-3 text-base font-medium text-secondary hover:bg-gray-100 hover:text-accent">EyeSTAR in the News</a></li>
+                    <li><a href="pp.html" class="block px-5 py-3 text-base font-medium text-secondary hover:bg-gray-100 hover:text-accent">Privacy Policy</a></li>
+                    <li><a href="#contact" class="block px-5 py-4 text-base font-medium text-white bg-orange-400 text-center">Contact Us</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- =========== MAIN CONTENT (NEW) =========== -->
+    <main class="bg-gray-50">
+        <!-- FAQ Section -->
+        <section id="questions-content" class="py-16 sm:py-24">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-secondary tracking-tight">
+                        Your Questions, Answered
+                    </h1>
+                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                        Find answers to common questions about LASIK at EyeSTAR.
+                    </p>
+                </div>
+                
+                <!-- Q&A List -->
+                <div class="space-y-8">
+
+                    <!-- Q&A Item 1 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">How much is LASIK at EyeSTAR?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>The EyeSTAR eye laser treatment costs 1199€ for both eyes, 
+                            iLASIK *(Femto LASIK) costs 1699€ for both eyes, 
+                            and it includes the following:</p>
+                            <ol class="list-decimal list-inside pl-2 space-y-1">
+                                <li>A full pre-examination and suitability tests</li>
+                                <li>Wavefront Optimized eye laser surgery for both eyes</li>
+                                <li>Necessary eye drops</li>
+                                <li>Unlimited post-treatment examinations</li>
+                                <li>EyeSTAR Lifetime Care Guarantee</li>
+                            </ol>
+                            <p>* iLASIK (Femto LASIK) for the patients those have thin cornea and high diopters. They both give the exact same results.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 2 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">I've seen other places advertise LASIK at discount prices. Why should I choose EyeSTAR LASIK Institute?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>Most of those places are in fact agents, usually one person who create a website overnight and pose as clinics or hospitals. We strongly encourage you to choose a clinic or hospital directly, instead of dealing with such agents, who scam tourists or take them to the clinic that offers them the most commission.</p>
+                            <p>With some LASIK clinics and hospitals, a lower price for LASIK treatment comes at the expense of patient care or surgical experience. In other words, you get what you pay for. Our surgeons select our LASIK patients carefully and provide them with the best care possible, from initial consultation to post-procedure visits. Our surgeons' standards for success are higher than most LASIK surgeons: more than 99% of our patients see 20/20 or 20/25 following LASIK. The industry standard for success is 20/40 or better.</p>
+                            <p>"Bargain basement" fees on LASIK sometimes do not include medications, temporary prescription glasses, postoperative care after 3 months, enhancement procedures, the option to have one-eye done at a time, and so on. Many of the discount centers work like assembly lines where the patient-doctor relationships are minimal. Often, discount centers do not allow you to choose your surgeon or the doctor that performs your pre- and post-operative care. For most people, refractive surgery isn't the most appropriate place to try to get a "good deal". You can throw away and replace bad glasses or contact lenses, but you can't do that with a bad refractive surgery. Look for quality, service, and commitment.</p>
+                            <p>Low-cost providers usually cut costs by using blades multiple times. Some centers don't even sterilize them between patients. At such discount centers, there is even the risk of contagious diseases such as hepatitis or AIDS. One of the more important steps to avoid complication is in the rigorous testing of our patients. After the brief initial screening exam and prior to undergoing a procedure, we will perform a most thorough evaluation; some important measurements will be performed two or more times, and will be further repeated if necessary. At the EyeSTAR LASIK Institute, we will only perform LASIK operation on you if we believe that we can obtain a very good result. By far the most common complication is under-correction or over-correction. In the case of an under-correction or over-correction, the vision will be dramatically better, but a small amount of focusing error still remains. Further laser treatment, known as an "enhancement" or a "touch-up", can then be used to improve the vision further by decreasing the remaining nearsightedness, farsightedness, or astigmatism. There is no additional fee for "enhancement" procedures, which are performed on only 0.5% of our patients.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 3 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">Are expensive places better?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>In many instances, the more you pay the better quality care and service you get. LASIK treatment is a professional service with variable quality. Contrary to some advertising, it is not a product with consistency from one place to another. Top surgeons and optometrists have professional fees consummate with their expertise. Often, less-skilled doctors charge less in order to attract more patients. However, this does not necessarily mean the most expensive provider will always give you the best quality care and service.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 4 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">Does insurance cover LASIK operation?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>LASIK treatment and other types of refractive surgery are considered "cosmetic" by insurance companies and are usually not covered by insurance at this time. However there are some exceptions and you may call your individual insurance carrier directly if you have any questions regarding your coverage.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 5 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">How long has this technology been around?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>Reshaping the cornea for the correction of refractive errors has been known since the mid-1800s. But a practically beneficial operation goes back to 1949. This old technique called keratophakia is similar to a permanent contact lens. This procedure consists of taking away a layer of a donor cornea, sculpting it and putting it on the patient's cornea to correct it. It was done by stitches and from materials of donor corneas at that time. In 1963 Barraquer invented a carpenter's plane-like device called microkeratome. Then laserless LASIK-like operations have been performed.</p>
+                            <p>The first working Excimer laser (which was created by Stuart Searles (IBM) to etch circuits into computer chips without melting the silicon) was available on earth in 1975. Later this laser was tested by the US military on many materials even on the cornea. As far as we know, Trokel is the first doctor to notice the potential of this new laser for the correction of refractive errors and he began animal studies of Excimer laser in 1983. But the honor to use it the first time on humans goes to Theo Seiler, MD in April 1985. But routine PRK for myopia has started in 1987, and turned to LASIK with stitches and free cap in 1989 by Buratto and today's LASIK by Guimaraes in 1991. Interestingly LASIK's patent has been issued to Gholam Payman in 1989 (patent application in 1985 from animal studies).</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 6 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">How do I know if I'm a candidate?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>The ideal candidate is over 18 years of age with healthy eyes and stable vision. LASIK treatment can correct a wide range of nearsightedness, farsightedness and astigmatism.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 7 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">Is there an upper age limit for laser eye surgery?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>No! There is not an upper age limit but you should not have any cataracts.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 8 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">If I'm not eligible for LASIK operation, are there any other options available for me?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>LASIK operation is only one type of refractive surgery available to patients. Although you may not be eligible for LASIK, you may be eligible for a different procedure. You can discuss your options with our doctors.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 9 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">I have hyperopia. Can I benefit from LASIK treatment?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>Yes. Hyperopia up to 6 diopters can be corrected with LASIK treatment. If your prescription is higher than that you may have phakic intraocular lens implantation or clear lens extraction.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 10 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">If I have astigmatism, am I still a good candidate?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>Yes, we are able to correct the astigmatism through reshaping of the cornea with the laser.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 11 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">Are all excimer lasers the same?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>Absolutely not! EyeSTAR uses the best and most advanced lasers.
+                            Other cheaper lasers, which are commonly used by discount laser centers, are much less expensive to purchase and use, but do not produce the same level of vision. Also, the maintenance and calibration of the laser are very important in obtaining the optimal treatment result (we calibrate the laser before every treatment -- many centers only calibrate the laser between every 4 treatments, or even just once each day).</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 12 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">Do I need a second procedure for my astigmatism to be treated?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>No, astigmatism is also corrected during the course of the LASIK procedure. If the astigmatism is extremely high, you might need a procedure called astigmatic keratotomy (AK).</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 13 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">I'm over 40 years old and use bifocals. Will I need reading glasses after LASIK treatment?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>As people add candles to their birthday cakes, at about the age of 40, the natural autofocusing lens of the eye begins to lose its autofocus capability. This is when reading glasses appear or nearsighted people start lifting their glasses in order to see up close. When LASIK operation removes a nearsighted person's nearsightedness, they will shortly if not immediately see better in the distance for the first time and will need help for seeing up close at some point after the age of 40, like the rest of normal vision people over forty. The only exception to this is "monovision," an unnatural condition where one eye is purposely left slightly nearsighted. Some people can "switch eyes" according to whether they are looking at distance or reading up close. Those who can accomplish this task enjoy monovision and carry a pair of compensating spectacles with them for times when they need both eyes working together. If you are over 40, to know if you are a monovision candidate, we recommend a contact lens trial of monovision to simulate the condition.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 14 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">What is monovision, and why might I want it?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>People over the age of forty may need two separate prescriptions to see clearly, one for the distance and a different one for reading. The only options for Laser Vision Correction are to either correct both eyes for good distance vision and wear reading glasses or to elect monovision correction. In monovision correction, your dominant eye is corrected for distance vision and your non dominant eye is corrected for reading or intermediate vision. Monovision does not work for everyone, and it is always best to try it with contact lenses before doing it surgically. If it does work, it usually allows that person to function at most times without glasses for most distances, although some patients will want "night driving" glasses, "sewing glasses", and many will eventually have to wear some reading glasses as they continue to age.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 15 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">Can I have LASIK operation if I had a previous corneal transplant or radial keratotomy?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>With a skilled surgeon, as our surgeons at EyeSTAR, the answer is yes. Most reports of LASIK after the corneal transplantation have been excellent. With previous RK, LASIK treatment can give good results. However the procedure may be complicated if the flap separates at the previous radial incisions.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 16 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">I know that LASIK surgery will correct my refractive error. Will it also treat my lazy eye?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>Unfortunately, there is no definitive treatment for a lazy eye after the age of 7-9 years. But to our experience, most of our patients with lazy eyes have noticed an improvement in their vision and we have detected gain of 2 or more lines at the visual acuity test.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 17 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">Should I wait for refractive surgery to improve?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>Refractive surgery is highly technologically driven. Just like in the computer industry, there are constant advancements. The important question is whether the technological advances translate into proportionate increases in patient satisfaction. Because the level of patient satisfaction with modern refractive surgery is already so high, there probably will not be dramatic advances in the satisfaction for most patients. In many cases, time spent waiting for the technological improvements also means less time to potentially benefit from the refractive surgery. However, a few patients should wait for more advanced technologies and we will advise you whether you fall into this category.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 18 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">How important is the choice of a doctor?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>Your choice of doctor is a crucial decision. Not all doctors will meet with you more than 5 minutes before the surgery and be willing to answer ALL of your questions. This time is necessary to communicate the visual goals of each patient and to establish trust and comfort. Since LASIK operation is a corneal procedure, a cornea specialist is a smart choice. Our surgeons are highly skilled and experienced cornea specialists.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 19 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">Can both eyes be done at the same time?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>In virtually all cases, both eyes are done at the same time. But you may elect to have one eye done at a time.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 20 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">What kind of anesthesia is used during the treatment?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>Numbing eye drops are used. Sometimes an oral medication is used to help with relaxation. No needles or intravenous drugs are used.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 21 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">Can I see the treatment as it is being performed?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>You will be "awake", but very relaxed. You will not be able to see any of the details of the treatment. You will see a number of lights, but the images will be blurred.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 22 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">What if I move my eye during treatment? What if I don't keep looking at the red light?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>In addition to surgeon control, an extremely advanced eye tracker on our laser monitors eye movements and compensates faster than the eye can move. This safety feature is not present on all lasers. With any large deviations, the surgeon or the eye tracker will simply stop the laser ablation and restart the process when the eye is perfectly aligned. The laser is designed to pick up where it left off. Although eye movement is a concern of many patients, those who have experienced the LASIK laser vision correction procedure rarely note a problem maintaining fixation throughout the short laser ablation.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 23 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">What if I blink?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>A small retaining device will be used to keep your lids open and prevent blinking. There is no way you will be able to blink and hurt yourself or your visual outcome.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 24 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">Is the LASIK procedure painful?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>No! Patients experience virtually no discomfort during the LASIK procedure. No needles are used, as eye drop anesthesia is instilled directly onto the eye prior to the procedure. EyeSTAR results indicate that, post-procedure, we have never had a patient request pain medication. Our patients tell us that they are so well prepared by our clinic's staff before the procedure that any fear, anxiety and concerns were gone! A mild sedative pill taken just before surgery soothes away any lingering concerns.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 25 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">How long will the LASIK procedure take?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>LASIK operation takes about 4 to 5 minutes for an eye. The actual laser ablation time is in terms of seconds.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 26 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">Will my eyes be patched?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>No! Your eyes will not be patched after the LASIK operation. You will wear eye shields at bedtime for the first night after the procedure for protection.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 27 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">Is there any pain after the LASIK procedure?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>Most of our patients experience no pain or discomfort after the procedure. Some have a little watering of the eyes and mild burning sensation. One may have a mild to moderate foreign body sensation for a few hours following surgery, but after about 3-4 hours, the eye normally feels comfortable. Most people feel fine if they can take a nap soon after the treatment.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 28 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">How soon after surgery will I see well?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>Each patient is different. The eye drop medications cause some blurring, also there is extra water within the cornea after the LASIK treatment, but most patients notice a dramatic improvement even as they leave the office.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 29 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">Will my eyes look different after LASIK operation?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>No. Your eyes will look exactly the same.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 30 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">What happens after the procedure ?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>After your procedure, you will be encouraged to go home or to your hotel and take a nap. You will wear sunglasses home. Avoid reading and watching TV. If you rest for 1-2 hours at home after your LASIK laser vision correction procedure, you will notice an immediate change in your vision.</p>
+                            <p>Following surgery, for the first night, you will be asked to wear a patch over your eyes at bedtime; so you don't inadvertently rub your eyes while sleeping. You will be asked to use prescription eye drops and artificial tears for several days, and will be encouraged to avoid rubbing your eyes. Women are instructed not to wear mascara for two days, ideally one week. LASIK patients should avoid water sports for two weeks following the procedure to permit healing. You will be asked to return for a check-up by your doctor the day after surgery. At that visit, your doctor will check your vision, and monitor how your eyes are healing.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 31 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">Do I need to use eye drops after the procedure?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>You will use medicated eye drops for 1 week after your treatment, and artificial tears are recommended up to 1 month.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 32 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">What are the restrictions after Laser Vision Correction?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>No swimming for at least 3 days, ideally 2 weeks and no knuckle-rubbing eye rub for two weeks. As always, avoid getting soap or water directly into your eyes. Obviously, after Laser Vision Correction you will be on an antibiotic and soothing drops for one week. Showering with water in the face, shampooing hair, eyes closed is fine. Eye make up in 2 days but, preferably, a week. Common sense things.
+                            Otherwise, enjoy your new vision to the max!</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 33 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">When can I drive after the LASIK treatment?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>You should not drive the day of the treatment. After that, you may drive when you feel confident that your visual acuity and eye comfort allow you to drive safely. Almost all of our patients are able to drive the next day. They achieve a vision equal or better than driving license requirements.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 34 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">How soon can I use eye makeup?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>You may resume wearing eye makeup starting 2 days, preferably a week after your treatment. We strongly recommend that you purchase new eye makeup, specifically mascara, to avoid potential infection following your treatment.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 35 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">How soon after the treatment can I exercise?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>Non-contact sports can be resumed as soon as you feel capable. Eye protection is recommended for racquet sports or rough sports where there is a risk of being hit in the eye.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 36 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">How soon can I swim?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>You should stay out of swimming pools for at least 3 days, ideally 2 weeks after your treatment, and rivers, lakes, hot tubs, sea and oceans for one month following your treatment.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 37 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">When can I go back to work?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>Most of our patients have good enough vision and are comfortable enough to return to work and drive the next day. An additional day or two is rarely required before returning to work. Healing can vary however from person to person so it is a good idea to maintain some flexibility in your work schedule immediately after your LASIK procedure. If you can, we recommend that you take it easy for a couple of days.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 38 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">Will I need glasses or contact lenses after the LASIK operation?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>The goal of refractive surgery is to reduce your dependence on glasses and/or contact lenses, but seldom LASIK patients may benefit from reading glasses or distance glasses when they desire perfect near or distance vision.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 39 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">How long will it take before I can see well, and how long will it take before I have my best vision?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>Fast visual recovery characterizes this operation. Most patients achieve good vision the day of surgery and find that their eyes feel fairly normal within a day. Right after the procedure you see as if looking behind water. In about 4 hours the vision will be clearer. While your eyes are healing, it is normal for your vision to go back and forth between clear and blurry phases for several weeks. However, vision can continue to improve, and best vision can still take two to three months to occur, particularly with higher prescriptions. If necessary, adjustments to the surgery called enhancements can be done. Patients who undergo hyperopic LASIK often need to wait longer to able to see clearly. Typically, they are unable to see with intense clarity for one or two weeks, with best vision coming in several months post-operatively.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 40 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">Will I see 20/20 after my procedure?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>Your corrected vision following LASIK operation depends on the strength of your prescription as well as other individual factors. As with any surgical procedure the results are not guaranteed. However, all of our patients without any preexisting eye disease such as lazy eye, retinal diseases etc. see 20/40 or better (enough to pass a driver's exam) without correction. More than 99% of our patients achieve 20/20 or 20/25 vision. Approximately 0.5% of our patients require an enhancement to achieve their goal.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 41 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">What results can I expect from LASIK?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>Numerous studies have been published about the subject. Even the most pessimistic studies state that at least 90% of all the LASIK patients achieve a vision equal or better than driving license requirements. All of our existing LASIK patients (without any preexisting eye disease such as lazy eye, retinal diseases etc.) see far better than these requirements.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 42 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">Is the effect of LASIK treatment permanent?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>Yes. Following an initial healing period of three to six months, the effect of the treatment is life-long. Rarely, a minimal regression might occur.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 43 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">Will my vision be corrected forever?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>People often ask how long the benefits of their procedure will last. The first nearsighted patient's eye ever treated with laser vision correction was in the United States in 1987. That patient achieved 20/20 vision following treatment and is still 20/20 more than a decade later. Today, most experts around the world are confident that they will discover no long-term problems with laser vision correction. Based on the excellent results seen to date, laser vision correction has become the most commonly performed refractive procedure in the world.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 44 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">I hear that some nearsightedness comes back after awhile? Is that correct?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>People with high prescriptions who had PRK, the older laser treatment method might experience regression after the procedure. With LASIK treatment, this does not happen after the eye stabilizes, i.e. after 6 months. EyeSTAR surgeons take this initial regression into consideration when they enter the data to the laser's computer so that our patients have an excellent outcome.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 45 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">If I am still nearsighted after the procedure, can I be treated again?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>It is possible to have an enhancement after the initial procedure if the doctor deems it necessary and beneficial to the patient. Should an enhancement be necessary, it will be performed at no charge to the patient after six months following the procedure. Sometimes for very high prescriptions our surgeons purposefully divide the treatment into two sessions. Our retreatment rate is extremely low, approximately 0.5% compared to other internationally famous centers which usually range from 3% to 33%.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 46 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">Is there a guarantee that I will not have to wear glasses or contact lenses again?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>There are no guarantees in any part of medicine. We can give outcome percentages, rather good or bad, but as a rule, people under 7 diopters of myopia who have LASIK will have a 99% chance of success and will have less than a 0.5% probability for enhancement.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 47 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">What happens if I don't achieve my full correction?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>Although the vast majority of our patients will achieve excellent vision without glasses or contacts, a few will have a small residual refractive error, leaving them still slightly nearsighted or farsighted. Most of these patients can see fine for most of their daily activities, and use a thin pair of glasses for such tasks as nighttime driving. If you would like this residual refractive error corrected, an enhancement laser procedure can be performed after six months. The enhancement rate in our practice is 0.5%. Our doctors will weigh the probable benefits, patient expectations, and potential risks when determining whether an enhancement is appropriate.
+                            Typically, patients considered for an enhancement procedure should have at least 1.00 diopter of residual hyperopia, myopia or astigmatism or unaided vision of 20/40 or worse. Enhancement procedures should only be performed once adequate corneal healing and stability is achieved.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 48 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">If I don't get full correction, can I be retreated?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>Correction may be fine-tuned with retreatment, known as enhancement, and is generally performed after the first six months. With an enhancement, the flap is simply lifted back to allow the laser beam to remove a little more tissue. Then the flap is gently smoothed back into place again. Although retreatment may further improve your ability to see, perfect vision is still impossible to guarantee.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 49 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">Will I pay for the retreatment?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>At EyeSTAR LASIK Institute, any re-treatments necessary will be free for life.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 50 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">If I have LASIK and my vision changes later in life, can it be redone?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>Depending on the cause, retreatment may be a viable solution to vision changes later in life, and other treatment options exist. You would need to see your ophthalmologist to determine the cause of the change and to determine which option is best for you.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 51 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">If necessary, can I wear contact lenses after LASIK?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>These procedures do not modify the cornea in a way that would prevent contact lens wear. However, many patients elect to have refractive surgery because they were unable to wear contact lenses. In this case, you can expect to have problems after the surgery just like you did before it. If you didn't have problems with contact lenses before, you can wear contact lenses including cosmetic contacts if you wish to.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 52 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">Can I have cataract surgery or any other eye surgeries in the future?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>Yes, you can. If you had LASIK operation before, there are some differences in the calculation of intraocular lens power. Your surgeon should take that into consideration before your cataract operation, phacoemulsification surgery.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 53 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">What outcome can I expect after surgery?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>Although no results can be guaranteed, our goal is to correct you to between 20/10 (more than 20/20) and 20/40 (legal driving vision) without glasses or contacts. At EyeSTAR LASIK Institute, we are meticulous in tracking our outcomes and analyzing them statistically. This attention to detail allows us to create reproducible, excellent outcomes. Our patients are very happy. Because people heal differently, outcomes can vary so it is important that your expectations are reasonable, and this will be discussed with you during your consultation. If you are over 40 years old, you may need to wear reading glasses afterwards, as presbyopia naturally occurs in this age group or you may choose to have monovision.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 54 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">In general, how are the LASIK results?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>It changes from center to center. In general, 95% of LASIK patients achieve 20/40 vision or better and 85% achieve 20/20 or 20/25 vision.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 55 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">How are your LASIK results?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>Our results are far better than this. EyeSTAR's results are significantly better than the industry average: more than 99% of EyeSTAR's patients achieve 20/20 or 20/25 vision. In the US, the industry average is that 95% of LASIK patients achieve 20/40 vision or better. EyeSTAR's outcomes are exceptional because of our dedication, experience and attention to detail. EyeSTAR LASIK Institute Istanbul is dedicated to the perfection of laser vision correction.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 56 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">Can I go blind?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>Nobody has ever gone blind from this procedure to our knowledge.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 57 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">How safe is laser treatment?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>The safety of LASIK operation is one of the main reasons it has become so popular. Severe complications are extremely rare. The complication rate and the infection rate from LASIK are much less than those with contact lens wear. The laser has been in widespread use for the treatment of myopia (nearsightedness) and astigmatism over 15 years. Millions of successful procedures have been performed around the world. When performed by the proper surgeon, LASIK treatments are extremely safe. Although no procedure is without risks, these risks are minimal. The complication rate is much lower when the treatment is performed by corneal specialists who are very experienced in LASIK, as our surgeons are. Here is what the TIME magazine (November 1,1999) has stated: "Estimates of post-LASIK complication rates range from less than 1% of patients of corneal specialists to as high as 5% of patients of less experienced ophthalmologists".</p>
+                            <p>When you are interviewing doctors and you ask about their complication rates and you hear the answer "none", walk away. Quoting Dr. Machat: "If doctors say they have never had a complication, they either don't do surgery or they are lying."</p>
+                            <p>In order to decrease the risk of complication, we at the EyeSTAR LASIK Institute, Istanbul, Turkey take many steps that go far beyond the minimum standards of most laser centers. Our laser is calibrated before every single procedure to ensure the most accurate results, whereas many laser centers only calibrate the laser every six patients, or even just once per day. We monitor and control the temperature and humidity in our laser room strictly, which improves the accuracy of our results. Reputable centers like ours use one microkeratome blade per patient to avoid infection and potential flap complications from a damaged or progressively dulled blade. The risk of both problems increases significantly the more times the blade is used. Some excimer laser patients will experience optical aberrations during the initial healing phases, including glare, halos at night, or ghost images. This will disappear within several weeks. Careful attention to detail in centration and calibration of the laser, as well as measurement of pupil size, substantially lessens the incidence of optical aberrations.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 58 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">What are the most common side effects?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>The most common side effects of LASIK operation are: fluctuating vision (which only lasts for the first few weeks), night glare (which typically lasts for the first few weeks), and dry eye (which only lasts for the first few weeks).</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 59 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">What are the risks involved with LASIK?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>The risks include ablation and flap problems. Ablation problems are usually correctable with the newer laser nomograms. Flap problems have traditionally been the most common type of problems experienced with LASIK surgery. The latest generation of microkeratomes has reduced this risk significantly. The Hansatome which we use, developed by Chiron Vision and the Moria M2 have been shown in recent studies to be the safest available microkeratomes. Serious complications, though rare, include induced astigmatism, scarring, and infection. Most complications can be corrected through eye drops or a repeat procedure.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 60 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">What is the most feared risk associated with LASIK?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>The most feared risk following LASIK treatment is infection which we prevent using antibiotic eye drops for a few days. The risk of infection with contact lenses is 20 times more than that of LASIK. None of our patients have had any infections.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 61 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">Are there any long term risks?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>No! Over the first 15 years that this laser has been performed, there have been no progressive or long term changes that would lead one to believe that there would be any changes in the next 10 or 20 years.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 62 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">Will I become nearsighted again?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>The treatment changes the corneal shape. If your prescription is stable before the laser, it should remain so after the treatment. There may be some regression within the first 6 months after LASIK. This is taken into consideration when we enter your data to the laser's computer. If there is a small residual refractive error and if you would like this residual refractive error corrected, an enhancement laser procedure can be performed after six months. The enhancement rate in our practice is 0.5%. Our surgeons will weigh the probable benefits, patient expectations, and potential risks when determining whether an enhancement is appropriate.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Item 63 -->
+                    <div class="fade-in bg-white rounded-xl shadow-lg overflow-hidden p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-secondary mb-4">Would an eye surgeon ever have this performed?</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>In fact many already have! For example, Dr. Stephen Brint, who was the first to perform LASIK in the United States had LASIK treatment himself in 1997. Studies show that the more doctors, especially eye doctors, know about laser vision correction, the more likely they are to have it performed on themselves. More than half of the high-volume refractive surgeons who once depended on corrective lenses have had vision correction surgery after seeing the great results they achieved for their patients day in and day out.</p>
+                            <p>LASIK is also a procedure that most would recommend to their spouses or friends. This is the best indication of what eye specialists feel about the procedure. Our surgeons have performed the procedure on family and other doctor friends.</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+    </main>
+<footer class="bg-secondary text-gray-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <!-- Logo & Contact -->
+                <div class="space-y-6">
+                    <a href="#">
+                        <img class="h-16 w-auto" src="lasik-logo.png" alt="EyeSTAR Logo">
+                    </a>
+                    <p class="text-sm text-gray-400">
+                        Leading the world in advanced vision correction.
+                    </p>
+                    <div class="space-y-3">
+                        <a href="tel:+902123615000" class="flex items-center gap-3 text-sm hover:text-accent transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            <span>+90 212 361 5000</span>
+                        </a>
+                        <a href="tel:+905415001900" class="flex items-center gap-3 text-sm hover:text-accent transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+                                <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+                            </svg>
+                        <span>+90 541 500 1900</span>
+                    </a>
+                        <a href="mailto:info@eyestar.com" class="flex items-center gap-3 text-sm hover:text-accent transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <span>info@eyestar.us</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Links: LASIK Institute -->
+                <div>
+                    <h5 class="text-base font-semibold text-white tracking-wider uppercase">EyeSTAR LASIK Institute</h5>
+                    <ul class="mt-4 space-y-3">
+                        <li><a href="lasikinst.html" class="text-sm text-gray-300 hover:text-accent transition-colors">The LASIK Institute</a></li>
+                        <li><a href="lasiktech.html" class="text-sm text-gray-300 hover:text-accent transition-colors">The LASIK Technology</a></li>
+                        <li><a href="team.html" class="text-sm text-gray-300 hover:text-accent transition-colors">The LASIK Team</a></li>
+                        <li><a href="lcg.html" class="text-sm text-gray-300 hover:text-accent transition-colors">Lifetime Care Guarantee</a></li>
+                    </ul>
+                </div>
+
+                <!-- Links: Treatments -->
+                <div>
+                    <h5 class="text-base font-semibold text-white tracking-wider uppercase">EyeSTAR Treatments</h5>
+                    <ul class="mt-4 space-y-3">
+                        <li><a href="islasikforme.html" class="text-sm text-gray-300 hover:text-accent transition-colors">Is LASIK for me?</a></li>
+                        <li><a href="starttofinish.html" class="text-sm text-gray-300 hover:text-accent transition-colors">LASIK Start to Finish</a></li>
+                        <li><a href="contouralasik.html" class="text-sm text-gray-300 hover:text-accent transition-colors">Contoura LASIK</a></li>
+                        <li><a href="lasekandprk.html" class="text-sm text-gray-300 hover:text-accent transition-colors">LASEK and PRK</a></li>
+                        <li><a href="results.html" class="text-sm text-gray-300 hover:text-accent transition-colors">LASIK Results</a></li>
+                        <li><a href="risks.html" class="text-sm text-gray-300 hover:text-accent transition-colors">LASIK Risks</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Links: Patients -->
+                <div>
+                    <h5 class="text-base font-semibold text-white tracking-wider uppercase">Patient Info</h5>
+                    <ul class="mt-4 space-y-3">
+                        <li><a href="faq.html" class="text-sm text-gray-300 hover:text-accent transition-colors">Your Questions</a></li>
+                        <li><a href="index.html#patients" class="text-sm text-gray-300 hover:text-accent transition-colors">The Patients</a></li>
+                        <li><a href="trip.html" class="text-sm text-gray-300 hover:text-accent transition-colors">The Trip</a></li>
+                        <li><a href="news.html" class="text-sm text-gray-300 hover:text-accent transition-colors">EyeSTAR in the News</a></li>
+                        <li><a href="index.html" class="text-sm text-gray-300 hover:text-accent transition-colors">Contact Us</a></li>
+                        <li><a href="pp.html" class="text-sm text-gray-300 hover:text-accent transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Footer Bottom -->
+            <div class="mt-12 border-t border-gray-700 pt-8 flex flex-col sm:flex-row items-center justify-between">
+                <p class="text-sm text-gray-400">&copy; 2025 EyeSTAR LASIK Institute. All rights reserved.</p>
+                <div class="flex items-center gap-5 mt-4 sm:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-accent transition-colors" aria-label="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-accent transition-colors" aria-label="Twitter">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.616 1.956 2.398 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-accent transition-colors" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.148 3.227-1.667 4.77-4.919 4.919-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.07-1.646-.07-4.85s.012-3.584.07-4.85c.148-3.227 1.667-4.77 4.919-4.919 1.266-.058 1.646.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.059 1.689.073 4.948.073s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44-.645-1.44-1.441-1.44z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
