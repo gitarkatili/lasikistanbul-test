@@ -12,23 +12,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* Base font */
         body {
             font-family: 'Inter', sans-serif;
-            /* Add padding to the top to offset the fixed headers */
-            padding-top: 120px; /* 40px for top-bar + 80px for main-nav */
+            padding-top: 120px; 
         }
 
-        /* Custom Tailwind Config */
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
                         primary: '#FFFFFF',
-                        secondary: '#1a1a1a', /* A slightly softer black */
+                        secondary: '#1a1a1a', 
                         accent: {
-                            DEFAULT: '#f97316', /* orange-500 */
-                            hover: '#ea580c' /* orange-600 */
+                            DEFAULT: '#f97316', 
+                            hover: '#ea580c' 
                         }
                     },
                     height: {
@@ -42,7 +39,6 @@
             }
         };
 
-        /* Scroll Animation */
         .fade-in {
             opacity: 0;
             transform: translateY(20px);
@@ -54,12 +50,10 @@
             transform: translateY(0);
         }
 
-        /* Styling for nested dropdowns */
         .group:hover .group-hover\:block {
             display: block;
         }
         
-        /* Mobile menu submenu toggle */
         .submenu-toggle + .submenu {
             display: none;
         }
@@ -67,18 +61,16 @@
             display: block;
         }
 
-        /* FAQ Accordion */
         .faq-answer {
             transition: max-height 0.3s ease-out;
         }
         
-        /* Custom checkbox */
         .form-checkbox {
             appearance: none;
             -webkit-appearance: none;
             height: 1.25rem;
             width: 1.25rem;
-            border: 2px solid #d1d5db; /* gray-300 */
+            border: 2px solid #d1d5db; 
             border-radius: 0.25rem;
             display: inline-block;
             position: relative;
@@ -86,12 +78,11 @@
         }
         
         .form-checkbox:checked {
-            background-color: #f97316; /* accent */
+            background-color: #f97316; 
             border-color: #f97316;
         }
         
         .form-checkbox:checked::after {
-            /* Replaced Unicode with a more robust inline SVG background */
             content: "";
             display: block;
             width: 100%;
@@ -102,7 +93,6 @@
             background-position: center;
         }
         
-        /* NEW: Video Modal Styles */
         #video-modal-overlay {
             position: fixed;
             top: 0;
@@ -111,7 +101,7 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.85);
             z-index: 100;
-            display: none; /* Hidden by default */
+            display: none; 
             justify-content: center;
             align-items: center;
         }
@@ -121,7 +111,7 @@
             width: 90%;
             max-width: 960px;
             height: 0;
-            padding-bottom: 50.625%; /* 16:9 aspect ratio */
+            padding-bottom: 50.625%; 
             background-color: #000;
             border-radius: 0.5rem;
             box-shadow: 0 10px 25px rgba(0,0,0,0.5);
@@ -288,7 +278,7 @@
                             Start Your Free Consultation
                         </h2>
                         <form action="https://api.web3forms.com/submit" method="POST" id="hero-form">
-                            <input type="hidden" name="access_key" value="065fee61-3157-4a55-af33-4a1877dfd2b4">
+                            <input type="hidden" name="access_key" value="539c1c98-50e0-4c94-be83-a988ee5e7a75">
                             <input type="hidden" name="subject" value="New Consultation Request from EyeSTAR Website">
                             <input type="hidden" name="redirect" value="https://web3forms.com/success"> <div class="grid sm:grid-cols-2 gap-4">
                                 <div>
@@ -644,7 +634,7 @@
                             Start Your Free Consultation
                         </h2>
                         <form action="https://api.web3forms.com/submit" method="POST" id="footer-form">
-                            <input type="hidden" name="access_key" value="065fee61-3157-4a55-af33-4a1877dfd2b4">
+                            <input type="hidden" name="access_key" value="539c1c98-50e0-4c94-be83-a988ee5e7a75">
                             <input type="hidden" name="subject" value="New Contact Form Submission from EyeSTAR Footer">
                             <input type="hidden" name="redirect" value="https://web3forms.com/success">
 
@@ -782,7 +772,6 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             
-            // --- 1. Mobile Menu Toggle ---
             const menuToggle = document.getElementById('menu-toggle');
             const mobileMenu = document.getElementById('mobile-menu');
             const menuIconOpen = document.getElementById('menu-icon-open');
@@ -796,7 +785,6 @@
                 menuIconClose.classList.toggle('hidden');
             });
             
-            // --- 2. Mobile Submenu Toggles ---
             const submenuToggles = document.querySelectorAll('.submenu-toggle');
             submenuToggles.forEach(toggle => {
                 toggle.addEventListener('click', (e) => {
@@ -815,7 +803,6 @@
                 });
             });
 
-            // --- 3. FAQ Accordion ---
             const faqQuestions = document.querySelectorAll('.faq-question');
             
             faqQuestions.forEach(button => {
@@ -824,7 +811,6 @@
                     const arrow = button.querySelector('.faq-arrow');
                     const isOpen = answer.style.maxHeight;
 
-                    // Close all other answers
                     faqQuestions.forEach(b => {
                         if (b !== button) {
                             b.nextElementSibling.style.maxHeight = null;
@@ -832,7 +818,6 @@
                         }
                     });
 
-                    // Open or close the clicked one
                     if (isOpen) {
                         answer.style.maxHeight = null;
                         if (arrow) arrow.style.transform = 'rotate(0deg)';
@@ -843,7 +828,6 @@
                 });
             });
 
-            // --- 4. Scroll Fade-in Animations ---
             const fadeElements = document.querySelectorAll('.fade-in');
             
             if ('IntersectionObserver' in window) {
@@ -855,20 +839,18 @@
                         }
                     });
                 }, {
-                    threshold: 0.1 // Trigger when 10% of the element is visible
+                    threshold: 0.1 
                 });
                 
                 fadeElements.forEach(el => {
                     observer.observe(el);
                 });
             } else {
-                // Fallback for older browsers
                 fadeElements.forEach(el => {
                     el.classList.add('visible');
                 });
             }
             
-            // --- 5. Close mobile menu when a link is clicked ---
             document.querySelectorAll('#mobile-menu a').forEach(link => {
                 link.addEventListener('click', () => {
                     if (!link.parentElement.querySelector('.submenu')) {
@@ -877,7 +859,6 @@
                 });
             });
 
-            // --- NEW: Video Modal Logic ---
             const videoModalOverlay = document.getElementById('video-modal-overlay');
             const videoModalIframe = document.getElementById('video-modal-iframe');
             const videoModalClose = document.getElementById('video-modal-close');
@@ -889,7 +870,7 @@
             }
 
             function closeModal() {
-                videoModalIframe.src = ''; // Stop video
+                videoModalIframe.src = ''; 
                 videoModalOverlay.style.display = 'none';
             }
 
@@ -902,7 +883,6 @@
 
             videoModalClose.addEventListener('click', closeModal);
             videoModalOverlay.addEventListener('click', (e) => {
-                // Only close if clicking on the overlay itself, not the content
                 if (e.target === videoModalOverlay) {
                     closeModal();
                 }
